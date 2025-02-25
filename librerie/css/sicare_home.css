@@ -1,0 +1,60 @@
+th,
+td{
+font-family: Arial; font-size: 10pt; font-weight: normal;
+}
+.btn-150 {
+  width: 150px;
+}
+.modal-short {
+}
+.modal-tall {
+}
+.modal-tall2 {
+}
+.modal-tall3 {
+}
+.modal-width1 {
+  width: 800px;
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 1100px;
+  }
+}
+.modal-title {
+  font-family: Arial; 
+  font-size: 22pt; 
+  font-weight: normal; 
+  color: #555555;
+  text-shadow: 1px 1px #777777;
+}
+.modal-title-sm {
+  font-family: Arial; 
+  font-size: 15pt; 
+  font-weight: normal; 
+  color: #555555;
+  text-shadow: 1px 1px #777777;
+}
+.navbar-default .navbar-brand {
+  background-image: url("../../librerie/img/logo.png");
+  padding-left: 55px;
+}
+.span-padding {
+padding-right: 7px;
+}
+.modal-dialog {
+  width: 95%;
+  height: 90%;
+  padding: 0;
+}
+.modal-content {
+  height: 100%;
+  border-radius: 0;
+}
+.modal-body {
+  height: 90%;
+}
+.a {
+  color: #ffffff !important;
+}
+.navbar-default .navbar-brand { text-transform: none; } 

@@ -1,0 +1,3 @@
+ALTER TABLE rebuilding_flussofinanziario_risorsa ADD risorsa_liquidata DOUBLE NULL;
+ALTER TABLE rebuilding_flussofinanziario_risorsa ADD risorsa_rimborsata DOUBLE NULL;
+ALTER TABLE rebuilding_flussofinanziario_risorsa ADD risorsa_economia DOUBLE NULL;

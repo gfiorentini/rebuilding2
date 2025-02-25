@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^rebuilding/login$ rebuilding/rebuilding_login.php
+    RewriteRule ^rebuilding/home$ rebuilding/rebuilding_home.php
+    RewriteRule ^rebuilding/sportelli$ rebuilding/rebuilding_sportelli.php
+    RewriteRule ^rebuilding/sportello$ rebuilding/rebuilding_sportello.php    
+    RewriteRule ^rebuilding/autorizzazione-operatori$ rebuilding/rebuilding_operatori.php
+    RewriteRule ^rebuilding/autorizzazione-operatore$ rebuilding/rebuilding_operatore.php
+    RewriteRule ^rebuilding/tabelle$ rebuilding/card_tabelle.php
+    RewriteRule ^rebuilding/corsi$ rebuilding/rebuilding_corsifad.php
+    RewriteRule ^rebuilding/corso$ rebuilding/rebuilding_corsofad.php
+    RewriteRule ^rebuilding/toolkit$ rebuilding/rebuilding_toolkit.php
+    RewriteRule ^rebuilding/rendicontazione$ rebuilding/rebuilding_rendicontazione.php
+    RewriteRule ^rebuilding/flussofinanziario$ rebuilding/rebuilding_flussofinanziario.php
+    RewriteRule ^rebuilding/flussofinanziari-xls$ rebuilding/rebuilding_flussofinanziari_esporta.php
+    RewriteRule ^rebuilding/flussofinanziario-pdf$ rebuilding/rebuilding_flussofinanziario_stampa.php
+    RewriteRule ^rebuilding/flussofinanziario-risorse$ rebuilding/rebuilding_flussofinanziario_risorse.php
+    RewriteRule ^rebuilding/notifiche$ rebuilding/rebuilding_notifiche.php
+    RewriteRule ^rebuilding/notifica$ rebuilding/rebuilding_notifica.php
+    RewriteRule ^rebuilding/ats$ rebuilding/rebuilding_ats_email.php
+    RewriteRule ^rebuilding/scadenzario$ rebuilding/rebuilding_scadenzario.php
+    RewriteRule ^rebuilding/scadenza$ rebuilding/rebuilding_scadenza.php
+    RewriteRule ^rebuilding/monitoraggio$ rebuilding/rebuilding_monitoraggio.php
+    RewriteRule ^rebuilding/rendiconto$ rebuilding/rebuilding_rendiconto.php
+    
+    ErrorDocument 404 /handle404.html
+</IfModule>
