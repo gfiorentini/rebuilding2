@@ -1,0 +1,1 @@
+ALTER TABLE rebuilding_notifica ADD notifica_destinatario_regione varchar(100) NULL;
