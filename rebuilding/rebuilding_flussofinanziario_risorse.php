@@ -297,16 +297,26 @@ function getDataInArray($data)
           <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_uploadLabel" aria-hidden="true" id="modal_upload" name="modal_upload" >
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modal_uploadLabel">Risorse fonte di finanziamento</h5>
+                <div class="modal-header bg-primary text-light">
+                  <h3 class="modal-title " id="modal_uploadLabel">Risorse fonte di finanziamento</h3>
                 </div>
                 <div class="modal-body">
-                  <div class="row">
+                  <div class="row border-bottom">
+                    <label class="form-label secondary" for="nome_file">Seleziona tipo di file</label>
+                    <select class=" form-select" id="tipo_file" name="tipo_file" >
+                      <option value="impegnato">Impegni</option>
+                      <option value="liquidato">Liquidazioni</option>
+                      <option value="restituito">Restituito</option>
+                      <option value="economia">Economie</option>
+                    </select>
+                  </div>
+                  <div class="row border-bottom" style="margin-top: 1rem;">
                     <label class="form-label" for="nome_file">Seleziona il file da elaborare</label>
                     <input type="file" class="form-control" id="nome_file" name="nome_file" value=""/>                  
                   </div>
                 </div>
                 <div class="modal-footer">
+                  <hr>
                   <button type="button" class="btn btn-secondary" id="chiud_modal" name="chiud_modal" data-dismiss="modal">Chiudi</button>
                   <button type="button" class="btn btn-primary" value="true" id="importa" name="importa">Elabora</button>
                 </div>
