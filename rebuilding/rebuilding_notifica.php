@@ -54,8 +54,8 @@ $target_dir = "../documenti/rebuilding/toolkit/";
 $aentiselezionati=array();
 // GF strutture regionali selezionate
 $astruttureselezionati=array();
-$astrutture_selezionate=array();
-$astruttura_selezionati=array();
+// $astruttureselezionati=array();
+// $astruttura_selezionati=array();
 $map_email_strutture_regioni = [
   "POSO" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it",
   "ISR" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it",
@@ -78,7 +78,7 @@ if(getPARAMETRO("_salva"))
   //GF strutture regionali selezionate
   $pnotifica_destinatario_strutture =getPARAMETRO("formSTRUTTURE");
   $pnotifica_destinatario_strutture =$db->escape_text($pnotifica_destinatario_strutture);
-  $astrutture_selezionate =explode(",",$pnotifica_destinatario_strutture);
+  $astruttureselezionati =explode(",",$pnotifica_destinatario_strutture);
   //
   $pnotifica_oggetto=getPARAMETRO("notifica_oggetto");
   $pnotifica_oggetto=$db->escape_text($pnotifica_oggetto);
@@ -101,7 +101,7 @@ if(getPARAMETRO("_salva"))
     //notifica_enti='$pnotifica_enti',
     $sSQL="UPDATE rebuilding_notifica  SET
     notifica_destinatario='$pnotifica_destinatario',
-    notifica_destinatario_regione='$pnotifica_destinatario_strutture',    // ADDED GF 
+    notifica_destinatario_regione='$pnotifica_destinatario_strutture',    
     notifica_stato='$pnotifica_stato',
     notifica_oggetto='$pnotifica_oggetto',
     notifica_testo='$pnotifica_testo',
@@ -213,8 +213,8 @@ elseif(getPARAMETRO("_invia"))
 
   // FASE-1 INVIA EMAIL ALLE STRUTTURE REGIONALI
   // GF - strutture regionali
-  $astrutture_selezionate=explode(",",$notifica->notifica_destinatario_regione );
-  foreach ($astrutture_selezionate as $key => $value) 
+  $astruttureselezionati=explode(",",$notifica->notifica_destinatario_regione );
+  foreach ($astruttureselezionati as $key => $value) 
   {
     $aemail_regione = $map_email_strutture_regioni[$value];
     $aEMAIL_REGIONE=explode(";",$aemail_regione);
@@ -357,7 +357,7 @@ if(!empty($pidrebuilding_notifica))
   $aentiselezionati=explode(",",$notifica->notifica_destinatario);
 
   // GF
-  $astruttura_selezionati=explode(",", $notifica->notifica_destinatario_regione);
+  $astruttureselezionati=explode(",", $notifica->notifica_destinatario_regione);
 
   if($notifica->notifica_stato==2)
     $disabled_notifica="disabled";
@@ -460,7 +460,7 @@ $aFLUSSI=$flussofinanziario->getFLUSSI(' where flussofinanziario_stato=2 ');
       <!-- <option value='0'></option> -->
       <?php
           foreach ($map_strutture_regioni as $key => $nome)         {
-            if (in_array($key, $astruttura_selezionati)) {
+            if (in_array($key, $astruttureselezionati)) {
               echo '<option value="'.$key.'" selected>'.$nome.'</option>';
             } else {
               echo '<option value="'.$key.'" >'.$nome.'</option>';

@@ -306,6 +306,7 @@ class rebuildingNOTIFICA {
 	public $notifica_ultimamodifica;
 	public $notifica_operatore;
 	public $idrebuilding_flussofinanziario;
+	public $notifica_destinatario_regione;
 
 	public function __construct($idrebuilding_notifica=null) 
 	{
@@ -329,7 +330,8 @@ class rebuildingNOTIFICA {
 				$this->notifica_stato=$rows["notifica_stato"];											
 				$this->notifica_datainserimento=$rows["notifica_datainserimento"];											
 				$this->notifica_ultimamodifica=$rows["notifica_ultimamodifica"];											
-				$this->notifica_operatore=$rows["notifica_operatore"];											
+				$this->notifica_operatore=$rows["notifica_operatore"];	
+				$this->notifica_destinatario_regione=$rows["notifica_destinatario_regione"];														
 
 			}	
 		}
