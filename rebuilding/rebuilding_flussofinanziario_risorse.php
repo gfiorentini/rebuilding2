@@ -12,6 +12,8 @@ use EXCEL\SimpleXLSX;
 //require_once ("../librerie/easyODS.php");
 require_once("../librerie/SimpleXLSX.php");
 
+error_reporting(E_ERROR | E_PARSE);
+
 //error_reporting(-1);
 //ini_set("display_errors",1);
 
@@ -29,7 +31,7 @@ $operatore_flagdirigente=$db->getVALUE("select operatore_flagdirigente from dara
 $aENTI=array(1=>"ATS1 - Pesaro",3=>"ATS3 - C.M. Catria e Nerone",4=>"ATS4 - Urbino",5=>"ATS5 - C.M. Montefeltro",6=>"ATS6 - Fano",7=>"ATS7 - Fossombrone",8=>"ATS8 - Senigallia",9=>"ATS9 - ASP Ambito 9 Jesi",10=>"ATS10 - Fabriano",11=>"ATS11 - Ancona",12=>"ATS12 - Falconara Marittima",13=>"ATS13 - Osimo",14=>"ATS14 - Civitanova Marche",15=>"ATS15 - Macerata",16=>"ATS16 - C.M. Monti Azzurri",17=>"ATS17 - Unione montanta alta valle del potenza e dell'Esino",17=>"ATS 17 - UNIONE MONTANA ALTE VALLI DEL POTENZA E DELL'ESINO",18=>"ATS18 - C.M. Camerino",19=>"ATS19 - Fermo",20=>"ATS20 - Porto Sant'Elpidio",21=>"ATS 21 - San Benedetto del Tronto",22=>"ATS22 - Ascoli Piceno",23=>"ATS23 - U.C. Vallata del Tronto",24=>"ATS24 - C.M. dei Sibillini");
 
 
-$aENTI_import=array(1=>"ATS 1",3=>"ATS 3",4=>"ATS 4",5=>"ATS 5",6=>"ATS 6",7=>"ATS 7",8=>"ATS 8",9=>"ATS 9",10=>"ATS 10",11=>"ATS 11",12=>"ATS 12",13=>"ATS 13",14=>"ATS 14",15=>"ATS 15",16=>"ATS 16",17=>"ATS 17",18=>"ATS 18",19=>"ATS 19",20=>"ATS 20",21=>"ATS 21",22=>"ATS 22",23=>"ATS 23",24=>"ATS 24");
+$aENTI_import=array(1=>"ATS 01",3=>"ATS 03",4=>"ATS 04",5=>"ATS 05",6=>"ATS 06",7=>"ATS 07",8=>"ATS 08",9=>"ATS 09",10=>"ATS 10",11=>"ATS 11",12=>"ATS 12",13=>"ATS 13",14=>"ATS 14",15=>"ATS 15",16=>"ATS 16",17=>"ATS 17",18=>"ATS 18",19=>"ATS 19",20=>"ATS 20",21=>"ATS 21",22=>"ATS 22",23=>"ATS 23",24=>"ATS 24");
 
 $centroterritorialeOPERATORE=$aENTI[$operatore_ente];
 
@@ -55,40 +57,95 @@ if(empty($operatore_flagamministratore))
 
 }
 
+$risorseassegnate = [];
+
 $risorseassegnate=$flussofinanziario->getRISORSE();
 $aRISORSEASSEGNATE=array();
+// GF
+$aRISORSE_LIQUIDATE=array();
+$aRISORSE_RESTITUITE=array();
+$aRISORSE_ECONOMIA=array();
+//
+
 foreach ($risorseassegnate as $key => $aRISORSE) 
 {
   $aRISORSEASSEGNATE[$aRISORSE['risorsa_ente']]=$aRISORSE['risorsa_assegnata'];
+  $aRISORSE_LIQUIDATE[$aRISORSE['risorsa_ente']]=$aRISORSE['risorsa_liquidata'];
+  $aRISORSE_RESTITUITE[$aRISORSE['risorsa_ente']]=$aRISORSE['risorsa_rimborsata'];
+  $aRISORSE_ECONOMIA[$aRISORSE['risorsa_ente']]=$aRISORSE['risorsa_economia'];
 }
 
+/**
+ * SALVATAGGIO DA FORM (premendo il tasto salva)
+ */
 if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operatore_flagdirigente))
 {
   $data=date("Y-m-d");
-  foreach ($aENTISELEZIONATI as $key => $idente) 
+  foreach ($aENTISELEZIONATI as $key => $idente) // liquidato  restituito economia
   {
     $risorsaassegnata=getPARAMETRO("risorse".$idente);
     $risorsaassegnata=$db->escape_text($risorsaassegnata);
     $risorsaassegnata = str_replace(",", ".", $risorsaassegnata);
 
+    $risorsa_liquidato=getPARAMETRO("liquidato".$idente);
+    $risorsa_liquidato=$db->escape_text($risorsa_liquidato);
+    $risorsa_liquidato = str_replace(",", ".", $risorsa_liquidato);
+    
+    $risorsa_restituito=getPARAMETRO("risorse".$idente);
+    $risorsa_restituito=$db->escape_text($risorsa_restituito);
+    $risorsa_restituito = str_replace(",", ".", $risorsa_restituito);
+    
+    $risorsa_economia=getPARAMETRO("risorse".$idente);
+    $risorsa_economia=$db->escape_text($risorsa_economia);
+    $risorsa_economia = str_replace(",", ".", $risorsa_economia);    
+
     if(empty($risorsaassegnata))
       $risorsaassegnata=0;
 
-    // Verifico se esiste il record
+    if(empty($risorsa_liquidato))
+      $risorsa_liquidato=0;
+  
+    if(empty($risorsa_restituito))
+      $risorsa_restituito=0;
+
+    if(empty($risorsa_economia))
+      $risorsa_economia=0;
+
+    // TODO: da rivedere se necessario splittare gli aggiornamenti.
+
+    // Verifico se esiste il record   risorse assegnate
     if(array_key_exists($idente,$aRISORSEASSEGNATE))
     {
-      $sSQL="UPDATE rebuilding_flussofinanziario_risorsa set risorsa_assegnata='$risorsaassegnata',risorsa_ultimamodifica='$data',risorsa_operatore='$idoperatore' where idrebuilding_flussofinanziario='$pidrebuilding_flussofinanziario' and risorsa_ente='$idente'";
+      $sSQL="UPDATE rebuilding_flussofinanziario_risorsa set risorsa_assegnata='$risorsaassegnata',risorsa_liquidata='$risorsa_liquidato',risorsa_rimborsata='$risorsa_restituito',risorsa_economia='$risorsa_economia',risorsa_ultimamodifica='$data',risorsa_operatore='$idoperatore' where idrebuilding_flussofinanziario='$pidrebuilding_flussofinanziario' and risorsa_ente='$idente'";
       $db->query($sSQL);
     }
     else  
     {
-      $sSQL="insert into rebuilding_flussofinanziario_risorsa (idrebuilding_flussofinanziario,risorsa_ente,risorsa_assegnata,risorsa_datainserimento,risorsa_ultimamodifica,risorsa_operatore) values('$pidrebuilding_flussofinanziario','$idente','$risorsaassegnata','$data','$data','$idoperatore')";
+      $sSQL="insert into rebuilding_flussofinanziario_risorsa (idrebuilding_flussofinanziario,risorsa_ente,risorsa_assegnata,risorsa_liquidata,risorsa_rimborsata,risorsa_economia,risorsa_datainserimento,risorsa_ultimamodifica,risorsa_operatore) values('$pidrebuilding_flussofinanziario','$idente','$risorsaassegnata','$risorsa_liquidato','$risorsa_restituito','$risorsa_economia','$data','$data','$idoperatore')";
       $db->query($sSQL);
     }  
 
   }
 
 }
+
+$tipo_file_excel = '';
+if (getPARAMETRO("tipo_file")) {
+  $tipo_file_excel = getPARAMETRO("tipo_file");
+}
+
+
+/**
+ *  mappa il campo che deve essere assegnato nella tabella, in base al tipo di file di input.
+ */
+$map_tipofile_nomecampodb = [
+  "impegnato" => "risorsa_assegnata",
+  "liquidato" => "risorsa_liquidata",
+  "restituito" => "risorsa_rimborsata",
+  "economia" => "risorsa_economia",
+
+];
+
 
 if(getPARAMETRO("_import_file"))
 {
@@ -128,7 +185,8 @@ if(getPARAMETRO("_import_file"))
               {
                 $ats_completo=strtoupper($row[4]);
                 $partita_iva=$row[5];
-                $risorsaassegnata=$row[7];
+                // $risorsaassegnata=$row[7];
+                $importo=$row[7];   // colonna 7
       
                 list($ats_codice,$ats_descrizione)=explode("-",$ats_completo);
                 $ats_codice=trim($ats_codice);
@@ -136,23 +194,23 @@ if(getPARAMETRO("_import_file"))
                 
                 if(!empty($idente) && in_array($idente,$aENTISELEZIONATI))
                 {
-                    if(empty($risorsaassegnata))
-                      $risorsaassegnata=0;
-      
+                    if(empty($importo)) $importo=0;   // importo letto dal file excel
+                    //
+                    // Nome del campo del db che deve essere aggiornato
+                    $nomecampo = $map_tipofile_nomecampodb[$tipo_file_excel];
+                    //
                     // Verifico se esiste il record
                     if(array_key_exists($idente,$aRISORSEASSEGNATE))
                     {
-                      $sSQL="UPDATE rebuilding_flussofinanziario_risorsa set risorsa_assegnata='$risorsaassegnata',risorsa_ultimamodifica='$flddata',risorsa_operatore='$idoperatore' where idrebuilding_flussofinanziario='$pidrebuilding_flussofinanziario' and risorsa_ente='$idente'";
+                      $sSQL="UPDATE rebuilding_flussofinanziario_risorsa set $nomecampo='$importo',risorsa_ultimamodifica='$flddata',risorsa_operatore='$idoperatore' where idrebuilding_flussofinanziario='$pidrebuilding_flussofinanziario' and risorsa_ente='$idente'";
                       $db->query($sSQL);
                       //echo "<br>";
                     }
                     else  
                     {
-                      $sSQL="INSERT INTO rebuilding_flussofinanziario_risorsa (idrebuilding_flussofinanziario,risorsa_ente,risorsa_assegnata,risorsa_datainserimento,risorsa_ultimamodifica,risorsa_operatore) values('$pidrebuilding_flussofinanziario','$idente','$risorsaassegnata','$flddata','$flddata','$idoperatore')";
+                      $sSQL="INSERT INTO rebuilding_flussofinanziario_risorsa (idrebuilding_flussofinanziario,risorsa_ente,$nomecampo,risorsa_datainserimento,risorsa_ultimamodifica,risorsa_operatore) values('$pidrebuilding_flussofinanziario','$idente','$importo','$flddata','$flddata','$idoperatore')";
                       $db->query($sSQL);
-                      
                     }  
-                    
                     $alert_success=true;
                 }    
                 
@@ -565,8 +623,10 @@ function viewALLEGATO(myFILENAME)
 $("#importa").click(function() {
   
   var file = $("#nome_file").val();
+  var tipo_file = $("#tipo_file").val();
+
   
-  if(file=='' || file== null || file==undefined)
+  if(file=='' || file== null || file==undefined || tipo_file=='' || tipo_file==null || tipo_file==undefined)
   {
     //$("#chiud_modal").hide()
     $("#chiud_modal").trigger('click');
@@ -575,7 +635,7 @@ $("#importa").click(function() {
 				closable: false,
 				size: BootstrapDialog.SIZE_NORMAL,
 				type: BootstrapDialog.TYPE_WARNING, 
-				message: "Selezionare il file da caricare",
+				message: "Selezionare il file da caricare ed il relativo tipo.",
 				buttons: [
 				{
 					label: 'OK',

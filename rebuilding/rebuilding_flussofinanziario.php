@@ -422,7 +422,7 @@ else
                     <div class="col-12 col-md-6">
                         
                         <select class="selectpicker" multiple id="formENTEselect" name="formENTEselect" title="Centro territoriale/ATS*" <?php echo $disabled_scheda;?> data-actions-box="true" >
-                          <option value='0'></option>
+                          <!-- <option value='0'></option> -->
                           <?php
                             
                             $aentiselezionati=explode(",",$flussofinanziario->flussofinanziario_ente);
