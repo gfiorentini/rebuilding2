@@ -54,6 +54,19 @@ $target_dir = "../documenti/rebuilding/toolkit/";
 $aentiselezionati=array();
 // GF strutture regionali selezionate
 $astruttureselezionati=array();
+$astrutture_selezionate=array();
+$astruttura_selezionati=array();
+$map_email_strutture_regioni = [
+  "POSO" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it",
+  "ISR" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it",
+  "CDI" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it"
+];
+
+$map_strutture_regioni = [
+  "POSO" => "Direzione Politiche Sociali",
+  "ISR" => "Inclusione Sociale",
+  "CDI" => "Contrasto al Disagio"
+];
 //
 if(getPARAMETRO("_salva"))
 {
@@ -65,7 +78,7 @@ if(getPARAMETRO("_salva"))
   //GF strutture regionali selezionate
   $pnotifica_destinatario_strutture =getPARAMETRO("formSTRUTTURE");
   $pnotifica_destinatario_strutture =$db->escape_text($pnotifica_destinatario_strutture);
-  $aentiselezionati =explode(",",$pnotifica_pnotifica_destinatario_strutturedestinatario);
+  $astrutture_selezionate =explode(",",$pnotifica_destinatario_strutture);
   //
   $pnotifica_oggetto=getPARAMETRO("notifica_oggetto");
   $pnotifica_oggetto=$db->escape_text($pnotifica_oggetto);
@@ -77,6 +90,9 @@ if(getPARAMETRO("_salva"))
   $pidrebuilding_flussofinanziario=$db->escape_text($pidrebuilding_flussofinanziario);
 
   $pnotifica_stato=1;
+
+
+
 
   $pnotifica_datainserimento=date("Y-m-d");
   if(!empty($pidrebuilding_notifica))
@@ -100,7 +116,7 @@ if(getPARAMETRO("_salva"))
   {
     
     $pflussofinanziario_orainserimento=date("H:i");
-    $sSQL="insert into rebuilding_notifica  (notifica_destinatario,notifica_stato,notifica_datainserimento,notifica_oggetto,notifica_testo,idrebuilding_flussofinanziario,notifica_operatore,notifica_ultimamodifica) values('$pnotifica_destinatario','$pnotifica_stato','$pnotifica_datainserimento','$pnotifica_oggetto','$pnotifica_testo','$pidrebuilding_flussofinanziario','$idoperatore','$pnotifica_datainserimento')";
+    $sSQL="insert into rebuilding_notifica  (notifica_destinatario,notifica_destinatario_regione,notifica_stato,notifica_datainserimento,notifica_oggetto,notifica_testo,idrebuilding_flussofinanziario,notifica_operatore,notifica_ultimamodifica) values('$pnotifica_destinatario','$pnotifica_destinatario_strutture','$pnotifica_stato','$pnotifica_datainserimento','$pnotifica_oggetto','$pnotifica_testo','$pidrebuilding_flussofinanziario','$idoperatore','$pnotifica_datainserimento')";
     $db->query($sSQL);
     $pidrebuilding_notifica=$db->insert_id();
 
@@ -192,6 +208,60 @@ elseif(getPARAMETRO("_invia"))
   }
 
 
+
+
+
+  // FASE-1 INVIA EMAIL ALLE STRUTTURE REGIONALI
+  // GF - strutture regionali
+  $astrutture_selezionate=explode(",",$notifica->notifica_destinatario_regione );
+  foreach ($astrutture_selezionate as $key => $value) 
+  {
+    $aemail_regione = $map_email_strutture_regioni[$value];
+    $aEMAIL_REGIONE=explode(";",$aemail_regione);
+
+    foreach ($aEMAIL_REGIONE as $key => $emailREGIONE) 
+    {
+      $aALLEGATI=$notifica->getALLEGATINAME();
+      
+      $aEMAIL=array();
+      $aEMAIL[0]=$emailREGIONE;
+      //$aEMAIL[0]="claudio.milani@iccs.it";
+      $aEMAIL[1]=clean($notifica->notifica_oggetto);
+      $aEMAIL[2]=nl2br(clean($notifica->notifica_testo));
+      $aEMAIL[3]=$aALLEGATI;
+      $aEMAIL[4]="";
+
+      $fldmail_result=sendMAIL($aEMAIL);
+
+      if($fldmail_result===true)
+      {
+        $sSQL="INSERT INTO rebuilding_notifica_email (idrebuilding_notifica,notifica_struttura,notifica_email,notifica_esito) value('$pidrebuilding_notifica','$value','$emailREGIONE','2')";
+        $db->query($sSQL);
+      }
+      else
+      {
+        $sSQL="INSERT INTO rebuilding_notifica_email (idrebuilding_notifica,notifica_struttura,notifica_email,notifica_esito) value('$pidrebuilding_notifica','$value','$emailREGIONE','1')";
+        $db->query($sSQL);      
+      }      
+
+      $data=date("Y-m-d"); 
+      $ora=date("H:i:s");
+      $oggetto=db_string($notifica->notifica_oggetto);
+
+      $testo=db_string($notifica->notifica_testo);
+
+      $sSQL="INSERT INTO gen_mail_temp 
+      (destinatario_mail,mittente_nominativo, mittente_mail, subject, 
+      body,data, ora, result,domain)
+      VALUES 
+      ('$emailREGIONE','Regione Marche - Rebuilding','noreply.rebuilding@regione.marche.it','$oggetto',
+      '$testo','$data','$ora','$fldmail_result','regione.marche.it')";
+      $db->query($sSQL);
+
+    }    
+  }
+
+  // FASE-2 INVIA EMAIL AGLI ATS
   foreach ($aentiselezionati as $key => $value) 
   {
     $emailATS=$db->getVALUE("SELECT ats_email from rebuilding_ats where idrebuilding_ats='$value'",'ats_email');
@@ -211,7 +281,10 @@ elseif(getPARAMETRO("_invia"))
       $aEMAIL[3]=$aALLEGATI;
       $aEMAIL[4]="";
 
-      $fldmail_result=sendMAIL($aEMAIL);
+      // GF DEV-ENVIRONMENT --  TEST CODE START 
+      $fldmail_result=false;
+      // $fldmail_result=sendMAIL($aEMAIL);
+      // TEST CODE END
 
       if($fldmail_result===true)
       {
@@ -235,7 +308,7 @@ elseif(getPARAMETRO("_invia"))
       body,data, ora, result,domain)
       VALUES 
       ('$emailATS','Regione Marche - Rebuilding','noreply.rebuilding@regione.marche.it','$oggetto',
-      '$testo','$data','$ora','$fldmail_result','iccs.it')";
+      '$testo','$data','$ora','$fldmail_result','regione.marche.it')";
       $db->query($sSQL);
 
     }
@@ -282,6 +355,10 @@ if(!empty($pidrebuilding_notifica))
   $operatore_nominativo=addslashes($operatore_nominativo);
 
   $aentiselezionati=explode(",",$notifica->notifica_destinatario);
+
+  // GF
+  $astruttura_selezionati=explode(",", $notifica->notifica_destinatario_regione);
+
   if($notifica->notifica_stato==2)
     $disabled_notifica="disabled";
 
@@ -369,7 +446,7 @@ $aFLUSSI=$flussofinanziario->getFLUSSI(' where flussofinanziario_stato=2 ');
                         </select>
                         <input type="hidden" id="formENTE" name="formENTE" value="">
                         <!-- GF --> 
-                        <input type="hidden" id="formSTRUTTURE" name="formENTE" value="">
+                        <input type="hidden" id="formSTRUTTURE" name="formSTRUTTURE" value="">
                       
                     </div>
         
@@ -381,9 +458,18 @@ $aFLUSSI=$flussofinanziario->getFLUSSI(' where flussofinanziario_stato=2 ');
     <label for="formSTRUTTUREselect">Destinatari Regione Marche*</label>
     <select class="selectpicker" multiple id="formSTRUTTUREselect" name="formSTRUTTUREselect" title="Strutture Regionali*" <?php echo $disabled_notifica;?>  data-actions-box="true">
       <!-- <option value='0'></option> -->
-      <option value="POSO">Direzione Politiche Sociali</option>
+      <?php
+          foreach ($map_strutture_regioni as $key => $nome)         {
+            if (in_array($key, $astruttura_selezionati)) {
+              echo '<option value="'.$key.'" selected>'.$nome.'</option>';
+            } else {
+              echo '<option value="'.$key.'" >'.$nome.'</option>';
+            }
+          }
+      ?>  
+      <!-- <option value="POSO">Direzione Politiche Sociali</option>
       <option value="ISR"> Inclusione Sociale</option>
-      <option value="xxx">Settore disabilità</option>                             
+      <option value="CDI">Settore disabilità</option>                              -->
     </select>
 </div>
 </div> 
