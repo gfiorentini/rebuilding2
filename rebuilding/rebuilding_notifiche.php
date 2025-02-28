@@ -243,7 +243,8 @@ $aSTATI=array(1=>"NON INVIATA",2=>"INVIATA");
                       echo '<th>'.$notifica_datainserimento.'</th>';
                       echo '<th>'.$notifica_data." ".substr($notifica_ora,0,5).'</th>';
                       echo '<th>'.$destinatari.'</th>';
-                      echo '<th>'.$notifica_testo.'</th>';
+                      // echo '<th>'.$notifica_testo.'</th>';
+                      echo '<th><div class="fs-5">'.$notifica_oggetto.'</div><div class="text-muted fw-normal fs-6">'. substr($notifica_testo, 0, 200) . '...</div></th>';
                       echo '<th>'.$statonotifica.'</th>';
                       echo '<th class="text-right">';
                       if($operatore_flagamministratore==1)

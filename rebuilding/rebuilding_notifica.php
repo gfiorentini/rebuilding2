@@ -641,6 +641,7 @@ $aFLUSSI=$flussofinanziario->getFLUSSI(' where flussofinanziario_stato=2 ');
                           {
                             $idrebuilding_notifica_email=$aDATI["idrebuilding_notifica_email"];
                             $notifica_ente=$aDATI["notifica_ente"];
+                            $notifica_struttura=$aDATI["notifica_struttura"];
                             $notifica_email=$aDATI["notifica_email"];
                             $notifica_esito=$aDATI["notifica_esito"];
                             $statonotifica=$aSTATI[$notifica_esito];
@@ -652,7 +653,7 @@ $aFLUSSI=$flussofinanziario->getFLUSSI(' where flussofinanziario_stato=2 ');
 
                             echo '<tr style="color:'.$color.'">';
                             echo '<th>'.$iCounter.'</th>';
-                            echo '<th>'.$aENTI[$notifica_ente].'</th>';
+                            echo '<th>'.$aENTI[$notifica_ente].$notifica_struttura.'</th>';
                             echo '<th>'.$notifica_email.'</th>';
                             echo '<th>'.$statonotifica.'</th>';
                             echo '</tr>';
