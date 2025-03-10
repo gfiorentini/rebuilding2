@@ -8,12 +8,27 @@ $idoperatore=verificaUSER();
 
 //$operatore=new DARAOperatore($idoperatore);
 //$autorizzazioni=$operatore->getAUORIZZAZIONI();
-$operatore_flagamministratore=$db->getVALUE("select operatore_flagamministratore from dara_operatore where iddara_operatore='$idoperatore' ","operatore_flagamministratore");
 
 //GF
 $rm_profilo_utente = $db->select("select * from dara_operatore where iddara_operatore='$idoperatore' ") ;
 $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 //GF
+
+$operatore_flagamministratore=$db->getVALUE("select operatore_flagamministratore from dara_operatore where iddara_operatore='$idoperatore' ","operatore_flagamministratore");
+
+// Indica la classe di gruppi di lavoro 
+$gdlclass = "non specificata";
+
+// Controlla se ci sono parametri nella query string
+if (isset($_GET['gdlclass']) ) {
+  $gdlclass = $_GET['gdlclass'];
+  
+} else {
+  die("Errore: gruppi tematici errati.");
+}
+
+$rm_gruppi_di_lavoro =  $db->select("select * from rebuilding_gruppi_di_lavoro where gdl_tipo='$gdlclass' ") ;
+
 
 ?>
 <!doctype html>
@@ -44,7 +59,7 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
               <a href="toolkit_menu" class="text-gray-700"> Toolkit</a>
               </li>              
               <li class="breadcrumb-item active" aria-current="page">
-                Riunioni
+                Riunioni - Gruppi di Lavoro ... *** sistemare *** 
               </li>
             </ol>
 
@@ -59,42 +74,36 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 
         <div class="row">
 
+
+        <?php foreach ($rm_gruppi_di_lavoro as $rm_gruppo) { ?>
+
+          <!-- PER OGNI GRUPPO DI LAVORO DELLA CLASSE gdlclass  -->
+
+
           <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
               <!-- Icon -->
               <div class="icon icon-lg mb-3">
-                <img src="../librerie/assets/img/analytics.png">  
+                <img src="../librerie/assets/img/analytics.png">    <!-- icona del gruppo di lavoro --> 
               </div>
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_gdl_lista?gdlclass=tematici" class="dropdown-item fw-bold text-decoration-none">Gruppi di lavoro tematici</a>
-               
+                <a href="#" class="dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
               </h3>
 
               <!-- Text -->
               <p class="text-muted mb-8 mb-lg-0">
-              Gruppi di lavoro tematici
+              <?php echo $rm_gruppo["gdl_testo"]; ?>
               </p>
 
           </div>
 
-          <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
-              <!-- Icon -->
-              <div class="icon icon-lg mb-3">
-                <img src="../librerie/assets/img/biblioteca.png" style="width: 20%">  
-              </div>
 
-              <!-- Heading -->
-              <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_gdl_lista?gdlclass=comitato" class="dropdown-item fw-bold text-decoration-none">Gruppi di lavoro Comitato Tecnico</a>
-              </h3>
+g
 
-              <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0">
-                Gruppi di lavoro Comitato Tecnico a supporto del Tavolo regionale della Rete della Prevenzione e Inclusione Sociale
-              </p>
+        <?php } ?>
 
-          </div>        
+
              
 
         </div>  

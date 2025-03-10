@@ -34,6 +34,7 @@
     RewriteRule ^rebuilding/toolkit_menu$ rebuilding/rebuilding_toolkit_menu.php
 
     RewriteRule ^rebuilding/riunioni$ rebuilding/rebuilding_riunioni_menu.php
+    RewriteRule ^rebuilding/rebuilding_riunioni_gdl_lista$ rebuilding/rebuilding_riunioni_gdl_lista.php
     
     ErrorDocument 404 /handle404.html
 </IfModule>
