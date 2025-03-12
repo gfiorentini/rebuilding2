@@ -109,20 +109,32 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
       </div> <!-- / .container -->
     </nav>
     
-    <header>
 
-    <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>
-            <!-- HTML code to display if condition is true -->
-                <a href="rebuilding_riunione_create" class="btn btn-primary" >AGGIUNGI NUOVA RIUNIONE</a>
-            <?php else: ?>
-            <!-- HTML code to display if condition is false -->
-            <a href="#" class="btn btn-primary" >aaa</a>
-            <?php endif; ?>
+    <section class="py-4 bg-light">
+      <div class="col-10 offset-1">
+        <div class="row">
+          <div class="col-6">
+              <p align="left"></p><div class="badge bg-secondary-soft">PROFILO REGIONALE</div><p></p>  
 
+          </div>    
+          <div class="col-6">    
+              <p align="right">
+              <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>                
+                  <button type="button" class="btn btn-primary-soft btn-xs" onclick="xxxxx('0')"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</button>
+              <?php else: ?>
+                  <!-- HTML code to display if condition is false -->
+                  <a href="#" class="btn btn-primary" >########</a>
+              <?php endif; ?>                  
+                  <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxx();"><i class="fe fe-list"></i>&nbsp;Esporta in excel</button>
+                  <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxxx();"><i class="fe fe-search"></i>&nbsp;Ricerca</button>
+              </p>
+          </div>  
+        </div> 
+      </div>
+      
+    </section>
 
-
-    </header>
-    
+  
     <section class="pt-8 pt-md-11 pb-md-11">
       <div class="container">
 
