@@ -4,6 +4,7 @@ CREATE TABLE `rebuilding_gruppi_di_lavoro` (
   `gdl_testo` varchar(512) DEFAULT NULL,
   `gdl_icona` varchar(255) DEFAULT NULL,
   `gdl_tipo` varchar(16) DEFAULT "tematici",
+  `gdl_path` varchar(100) NULL
   PRIMARY KEY (`idrebuilding_gld`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

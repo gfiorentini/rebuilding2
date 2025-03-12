@@ -95,7 +95,7 @@ $operatore_flagamministratore=$db->getVALUE("select operatore_flagamministratore
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="riunioni" class="dropdown-item fw-bold text-decoration-none">Riunioni</a>
+                <a href="rebuilding_riunioni_menu" class="dropdown-item fw-bold text-decoration-none">Riunioni</a>
               </h3>
 
               <!-- Text -->

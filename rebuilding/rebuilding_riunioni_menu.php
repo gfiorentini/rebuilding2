@@ -15,6 +15,22 @@ $rm_profilo_utente = $db->select("select * from dara_operatore where iddara_oper
 $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 //GF
 
+
+
+
+// $rootPath = $_SERVER["DOCUMENT_ROOT"];
+// $dirPath = dirname(__DIR__);
+
+// define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
+
+// $riunioniRoot = $_SERVER["DOCUMENT_ROOT"] . '/riunioni/';
+
+// $currentRiunioneRoot = $riunioniRoot . '/test/';
+
+// checkAndCreateDirectory( $currentRiunioneRoot );
+
+
+
 ?>
 <!doctype html>
 <html lang="it">
@@ -74,7 +90,7 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
               <!-- Text -->
               <p class="text-muted mb-8 mb-lg-0">
               Gruppi di lavoro tematici
-              </p>
+
 
           </div>
 

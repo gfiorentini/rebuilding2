@@ -8,6 +8,22 @@ $idoperatore=verificaUSER();
 
 //$operatore=new DARAOperatore($idoperatore);
 //$autorizzazioni=$operatore->getAUORIZZAZIONI();
+function checkAndCreateDirectory($directory) {
+  // Controlla se la directory esiste
+  if (!is_dir($directory)) {
+      // Se non esiste, prova a crearla
+      if (mkdir($directory, 0777, true)) {
+          // echo "Directory creata con successo: $directory\n";
+      } else {
+          // echo "Errore nella creazione della directory: $directory\n";
+      }
+  } else {
+      //echo "La directory già esiste: $directory\n";
+  }
+}
+
+
+
 
 //GF
 $rm_profilo_utente = $db->select("select * from dara_operatore where iddara_operatore='$idoperatore' ") ;
@@ -26,10 +42,18 @@ if (isset($_GET['idr']) ) {
   die("Errore: gruppi id gruppo tematico errato errati.");
 }
 
+$gcurrentgruppo =  $db->select("select * from rebuilding_gruppi_di_lavoro where idrebuilding_gld=$gidr ") ;
+
 // TODO:   check if current user is authorized to accesso the gdl
 
-//$rm_gruppi_di_lavoro=[];
-// $rm_gruppi_di_lavoro =  $db->select("select * from rebuilding_gruppi_di_lavoro where gdl_tipo='$gdlclass' ") ;
+// VERIFICA ED EVENTUALMENTE CREA LA CARTELLA PER LE RIUNIONI  DEL GRUPPO DI LAVORO
+$riunioniRoot = $_SERVER["DOCUMENT_ROOT"] . '/riunioni/';
+$riunioniRootGruppo = $riunioniRoot. $gcurrentgruppo[0]["gdl_path"] . '/';
+checkAndCreateDirectory( $riunioniRootGruppo );
+
+
+
+$gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incontri where fk_idrebuilding_gld=$gidr ") ;
 
 
 // $rm_gruppi_di_lavoro =  $db->select("select * from rebuilding_gruppi_di_lavoro gl
@@ -86,7 +110,7 @@ if (isset($_GET['idr']) ) {
         <div class="row">
 
 
-        <?php foreach ($rm_gruppi_di_lavoro as $rm_gruppo) { ?>
+        <?php foreach ($gelenco_incontri as $incontro) { ?>
 
           <!-- PER OGNI GRUPPO DI LAVORO DELLA CLASSE gdlclass  -->
 
@@ -99,12 +123,12 @@ if (isset($_GET['idr']) ) {
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="riunioni?idr=<?php echo $rm_gruppo["idrebuilding_gld"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
+                <a href="riunione_dettaglio?idr=<?php echo $incontro["idincontro"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $incontro["incontro_titolo"] . '--' . $incontro["incontro_giorno"] ; ?></a>
               </h3>
 
               <!-- Text -->
               <p class="text-muted mb-8">
-              <?php echo $rm_gruppo["gdl_testo"]; ?>
+              <?php echo $incontro["incontro_abstract"]; ?>
               </p>
 
           </div>
