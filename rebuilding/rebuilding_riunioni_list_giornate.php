@@ -16,28 +16,29 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 
 $operatore_flagamministratore=$db->getVALUE("select operatore_flagamministratore from dara_operatore where iddara_operatore='$idoperatore' ","operatore_flagamministratore");
 
-// Indica la classe di gruppi di lavoro 
-$gdlclass = "non specificata";
+// Indica l'ID del gruppo di lavoro
+$gidr = -1;
 
 // Controlla se ci sono parametri nella query string
-if (isset($_GET['gdlclass']) ) {
-  $gdlclass = $_GET['gdlclass'];
-  
+if (isset($_GET['idr']) ) {
+  $gidr = intval( $_GET['idr'] );
 } else {
-  die("Errore: gruppi tematici errati.");
+  die("Errore: gruppi id gruppo tematico errato errati.");
 }
 
-$rm_gruppi_di_lavoro=[];
+// TODO:   check if current user is authorized to accesso the gdl
+
+//$rm_gruppi_di_lavoro=[];
 // $rm_gruppi_di_lavoro =  $db->select("select * from rebuilding_gruppi_di_lavoro where gdl_tipo='$gdlclass' ") ;
 
 
-$rm_gruppi_di_lavoro =  $db->select("select * from rebuilding_gruppi_di_lavoro gl
-where 
-gl.gdl_tipo='$gdlclass' AND
-exists ( 
-	select * from rebuilding_gruppi_di_lavoro_auth rgdla
-	where  rgdla.fk_idrebuilding_gld=gl.idrebuilding_gld AND codice_fiscale='$rm_operatore_codicefiscale' and (canView=1  or canEdit=1)
-)") ;
+// $rm_gruppi_di_lavoro =  $db->select("select * from rebuilding_gruppi_di_lavoro gl
+// where 
+// gl.gdl_tipo='$gdlclass' AND
+// exists ( 
+// 	select * from rebuilding_gruppi_di_lavoro_auth rgdla
+// 	where  rgdla.fk_idrebuilding_gld=gl.idrebuilding_gld AND codice_fiscale='$rm_operatore_codicefiscale' and (canView=1  or canEdit=1)
+// )") ;
 
 
 ?>
@@ -69,7 +70,7 @@ exists (
               <a href="toolkit_menu" class="text-gray-700"> Toolkit</a>
               </li>              
               <li class="breadcrumb-item active" aria-current="page">
-                Riunioni - Gruppi di Lavoro ... *** sistemare *** 
+                Riunioni - Giornate e materiale incontri effettuati. *** sistemare *** 
               </li>
             </ol>
 
@@ -98,7 +99,7 @@ exists (
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_list_giornate?idr=<?php echo $rm_gruppo["idrebuilding_gld"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
+                <a href="riunioni?idr=<?php echo $rm_gruppo["idrebuilding_gld"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
               </h3>
 
               <!-- Text -->
