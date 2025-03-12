@@ -44,6 +44,12 @@ if (isset($_GET['idr']) ) {
 
 $gcurrentgruppo =  $db->select("select * from rebuilding_gruppi_di_lavoro where idrebuilding_gld=$gidr ") ;
 
+$gcurrentgruppo_auth = $db->select("select * from rebuilding_gruppi_di_lavoro_auth rgdla
+	where  rgdla.fk_idrebuilding_gld=$gidr AND codice_fiscale='$rm_operatore_codicefiscale' ");
+
+$gcurrentgruppo_auth_canView = $gcurrentgruppo_auth[0]["canView"];
+$gcurrentgruppo_auth_canEdit = $gcurrentgruppo_auth[0]["canEdit"];
+
 // TODO:   check if current user is authorized to accesso the gdl
 
 // VERIFICA ED EVENTUALMENTE CREA LA CARTELLA PER LE RIUNIONI  DEL GRUPPO DI LAVORO
@@ -103,39 +109,47 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
       </div> <!-- / .container -->
     </nav>
     
+    <header>
+
+    <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>
+            <!-- HTML code to display if condition is true -->
+                <a href="rebuilding_riunione_create" class="btn btn-primary" >AGGIUNGI NUOVA RIUNIONE</a>
+            <?php else: ?>
+            <!-- HTML code to display if condition is false -->
+            <a href="#" class="btn btn-primary" >aaa</a>
+            <?php endif; ?>
+
+
+
+    </header>
     
     <section class="pt-8 pt-md-11 pb-md-11">
       <div class="container">
 
         <div class="row">
 
+        <div class="list-group">
+
 
         <?php foreach ($gelenco_incontri as $incontro) { ?>
 
           <!-- PER OGNI GRUPPO DI LAVORO DELLA CLASSE gdlclass  -->
 
+          <a href="#" class="list-group-item list-group-item-action " aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+              <h4 class="mb-1"><?php echo $incontro["incontro_titolo"]  ; ?></h4>
+              <small><?php echo ( new DateTime( $incontro["incontro_giorno"]))->format("d-m-Y"); ?></small>
+            </div>
+            <p class="mb-1"><?php echo $incontro["incontro_abstract"]  ; ?></p>
+            <small>............</small>
+          </a>          
 
-          <div class="col-12 col-md-6 col-lg-4 text-center aos-init aos-animate" data-aos="fade-up">
-              <!-- Icon -->
-              <div class="icon icon-lg mb-4">
-                <img src="../librerie/assets/img/analytics.png">    <!-- icona del gruppo di lavoro --> 
-              </div>
 
-              <!-- Heading -->
-              <h3 class="fw-bold">
-                <a href="riunione_dettaglio?idr=<?php echo $incontro["idincontro"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $incontro["incontro_titolo"] . '--' . $incontro["incontro_giorno"] ; ?></a>
-              </h3>
-
-              <!-- Text -->
-              <p class="text-muted mb-8">
-              <?php echo $incontro["incontro_abstract"]; ?>
-              </p>
-
-          </div>
 
         <?php } ?>
 
 
+        </div>
              
 
         </div>  

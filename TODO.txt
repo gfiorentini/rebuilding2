@@ -6,3 +6,24 @@ Gestione inserimento di una nuova riunione
 Gestione visualizzazione di una nuova riunione con i relativi allegati
 
 Gestione streaming video
+
+
+
+
+          <div class="col-12 col-md-6 col-lg-4 text-center aos-init aos-animate" data-aos="fade-up">
+              <!-- Icon -->
+              <div class="icon icon-lg mb-4">
+                <img src="../librerie/assets/img/analytics.png">    <!-- icona del gruppo di lavoro --> 
+              </div>
+
+              <!-- Heading -->
+              <h3 class="fw-bold">
+                <a href="rebuilding_riunione_view?idr=<?php echo $incontro["idincontro"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $incontro["incontro_titolo"] . '--' . $incontro["incontro_giorno"] ; ?></a>
+              </h3>
+
+              <!-- Text -->
+              <p class="text-muted mb-8">
+              <?php echo $incontro["incontro_abstract"]; ?>
+              </p>
+
+          </div>
