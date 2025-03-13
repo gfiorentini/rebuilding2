@@ -83,7 +83,7 @@ if (empty($incontroDAO->incontro_file_trascrizione)) {
   $url_incontro_file_trascrizione = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_trascrizione ; 
 }
 if (empty($incontroDAO->incontro_file_altro_materiale)) {
-  $url_incontro_file_altro_materiale = "javascript:void(0)";
+  $url_incontro_file_altro_materiale = "#";
 } else {
   $url_incontro_file_altro_materiale = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_altro_materiale ; 
 }
