@@ -120,7 +120,7 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
           <div class="col-6">    
               <p align="right">
               <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>                
-                  <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=" class="btn btn-primary-soft btn-xs" onclick="xxxxx('0')"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</a>
+                  <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=&_nuovo=1" class="btn btn-primary-soft btn-xs" onclick="xxxxx('0')"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</a>
               <?php else: ?>
                   <!-- HTML code to display if condition is false -->
                   <a href="#" class="btn btn-primary" >########</a>
@@ -146,16 +146,17 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
         <?php foreach ($gelenco_incontri as $incontro) { ?>
 
           <!-- PER OGNI GRUPPO DI LAVORO DELLA CLASSE gdlclass  -->
-
-          <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class="list-group-item list-group-item-action " aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-              <h4 class="mb-1"><?php echo $incontro["incontro_titolo"]  ; ?></h4>
-              <small><?php echo ( new DateTime( $incontro["incontro_giorno"]))->format("d-m-Y"); ?></small>
+ 
+            <div class="list-group-item list-group-item-action" >
+              <div class="d-flex w-100 justify-content-between">
+                <a href="rebuilding_riunione_view?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class=" " aria-current="true"><h4 class="mb-1"><?php echo $incontro["incontro_titolo"]  ; ?></h4></a>
+                <small><?php echo ( new DateTime( $incontro["incontro_giorno"]))->format("d-m-Y"); ?></small>
+              </div>
+              <p class="mb-1"><?php echo $incontro["incontro_abstract"]  ; ?></p>
+              <small>
+                <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class="list-group-item list-group-item-action " aria-current="true">Modifica</a>
+              </small>
             </div>
-            <p class="mb-1"><?php echo $incontro["incontro_abstract"]  ; ?></p>
-            <small>............</small>
-          </a>          
-
 
 
         <?php } ?>

@@ -15,6 +15,17 @@ require_once("../librerie/dara.class.servizi.php");
 //ini_set("display_errors",1);
 date_default_timezone_set('Europe/Rome');
 
+
+function checkAndCreateDirectory($directory) {
+  // Controlla se la directory esiste
+  if (!is_dir($directory)) {
+      if (mkdir($directory, 0777, true)) {
+      } else {
+      }
+  } else {
+  }
+}
+
 $str_error_upload='';
 
 $idoperatore=verificaUSER();
@@ -46,10 +57,24 @@ $aRUP=$operatori->getOPERATORI('operatore_flagamministratore=1 and operatore_fla
 
 $pfk_idrebuilding_gld = getPARAMETRO("igl");   // id gruppo di lavoro
 $pidincontro = getPARAMETRO("idr"); // id riunione
-
+//
+//
+$rm_profilo_utente = $db->select("select * from dara_operatore where iddara_operatore='$idoperatore' ") ;
+$rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
+$gcurrentgruppo =  $db->select("select * from rebuilding_gruppi_di_lavoro where idrebuilding_gld=$pfk_idrebuilding_gld ") ;
+$gcurrentgruppo_auth = $db->select("select * from rebuilding_gruppi_di_lavoro_auth rgdla
+	where  rgdla.fk_idrebuilding_gld=$pfk_idrebuilding_gld AND codice_fiscale='$rm_operatore_codicefiscale' ");
+$gcurrentgruppo_auth_canView = $gcurrentgruppo_auth[0]["canView"];
+$gcurrentgruppo_auth_canEdit = $gcurrentgruppo_auth[0]["canEdit"];
+// VERIFICA ED EVENTUALMENTE CREA LA CARTELLA PER LE RIUNIONI  DEL GRUPPO DI LAVORO
+$riunioniRoot = $_SERVER["DOCUMENT_ROOT"] . '/riunioni/';
+$riunioniRootGruppo = $riunioniRoot. $gcurrentgruppo[0]["gdl_path"] . '/';
+checkAndCreateDirectory( $riunioniRootGruppo );
+//
 if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operatore_flagdirigente))
 {
-
+  $riunioneRoot = $riunioniRootGruppo . "incontro$pidincontro/";
+  checkAndCreateDirectory( $riunioneRoot );
 
   $pform_incontro_titolo=getPARAMETRO("form_incontro_titolo");
   $pform_incontro_titolo=$db->escape_text($pform_incontro_titolo);
@@ -72,9 +97,6 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     SET incontro_titolo='$pform_incontro_titolo'
     , incontro_abstract='$pincontro_abstract'
     , incontro_giorno='$pincontro_giorno'
-    , incontro_file_agenda=NULL
-    , incontro_file_verbale=NULL
-    , incontro_file_video=NULL
     , incontro_dt_created=current_timestamp()
     , incontro_op_created=NULL
     , incontro_dt_last_modified=current_timestamp()
@@ -87,6 +109,16 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
   else
   {
     
+    $pform_incontro_titolo=getPARAMETRO("form_incontro_titolo");
+    $pform_incontro_titolo=$db->escape_text($pform_incontro_titolo);
+    // $aentiselezionati=explode(",",$pflussofinanziario_ente);
+    
+    $pincontro_abstract=getPARAMETRO("form_incontro_abstract");
+    $pincontro_abstract=$db->escape_text($pincontro_abstract);
+  
+    $pincontro_giorno=getPARAMETRO("form_incontro_giorno");
+    $pincontro_giorno=$db->escape_text($pincontro_giorno);
+
     $sSQL="INSERT INTO rebuilding_gruppi_di_lavoro_incontri 
     (fk_idrebuilding_gld
     , incontro_titolo
@@ -102,15 +134,49 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     ) VALUES ($pfk_idrebuilding_gld
     , '$pform_incontro_titolo'
     , '$pincontro_abstract'
-    , $pincontro_giorno, NULL, NULL, NULL, current_timestamp(), NULL, current_timestamp(), NULL);";
+    , '$pincontro_giorno', NULL, NULL, NULL, current_timestamp(), NULL, current_timestamp(), NULL);";
     $db->query($sSQL);
     // legge nuovo ID
     $pidincontro=$db->insert_id();
 
     $alert_insert_success=true;
+
+    header("Location: rebuilding_riunione_edit?igl=$pfk_idrebuilding_gld&idr=$pidincontro");
+    exit; // Ensure no further code is executed after the redirect
+
   }
 
 
+  /** Manage file uploads */
+  if (isset($_FILES['fileConvocazione']) && $_FILES['fileConvocazione']['error'] !== UPLOAD_ERR_NO_FILE) {
+    $targetFile = $riunioneRoot . basename($_FILES["fileConvocazione"]["name"]);
+    if (move_uploaded_file($_FILES["fileConvocazione"]["tmp_name"], $targetFile)) {
+      // ok. 
+      $filename = $_FILES["fileConvocazione"]["name"];
+      $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri SET incontro_file_agenda='$filename' WHERE idincontro=$pidincontro;"; 
+      $db->query($sSQL);
+    }
+  }
+
+  if (isset($_FILES['fileVerbale']) && $_FILES['fileVerbale']['error'] !== UPLOAD_ERR_NO_FILE) {
+    $targetFile = $riunioneRoot . basename($_FILES["fileVerbale"]["name"]);
+    if (move_uploaded_file($_FILES["fileVerbale"]["tmp_name"], $targetFile)) {
+      // ok. 
+      $filename = $_FILES["fileVerbale"]["name"];
+      $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri SET incontro_file_verbale='$filename' WHERE idincontro=$pidincontro;"; 
+      $db->query($sSQL);
+    }
+  }
+
+  if (isset($_FILES['fileVideoRiunione']) && $_FILES['fileVideoRiunione']['error'] !== UPLOAD_ERR_NO_FILE) {
+    $targetFile = $riunioneRoot . basename($_FILES["fileVideoRiunione"]["name"]);
+    if (move_uploaded_file($_FILES["fileVideoRiunione"]["tmp_name"], $targetFile)) {
+      // ok. 
+      $filename = $_FILES["fileVideoRiunione"]["name"];
+      $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri SET incontro_file_video='$filename' WHERE idincontro=$pidincontro;"; 
+      $db->query($sSQL);
+    }
+  }
 
 }
 elseif(getPARAMETRO("_elimina") && $operatore_flagamministratore==1 && empty($operatore_flagdirigente))
@@ -126,6 +192,8 @@ elseif(getPARAMETRO("_eliminaallegato") && $operatore_flagamministratore==1 && e
 
   // $sSQL="delete from rebuilding_flussofinanziario_documento where idrebuilding_flussofinanziario_documento='$pidrebuilding_flussofinanziario_documento'";
   // $db->query($sSQL);
+} elseif(getPARAMETRO("_nuovo")) {
+
 }
 
 
@@ -229,6 +297,37 @@ $disabled_scheda="";
                     </div>              
                   </div>      
 
+    <?php
+    $nuovariuione = true; // Variabile per simulare lo stato dell'utente
+    ?>
+
+<?php if (!getPARAMETRO("_nuovo")):   ?>
+
+
+
+                  <div class="form-group row">
+                    <div class="col-12 col-md-10">
+                      <label class="form-label" for="fileConvocazione">Documento di convocazione</label>
+                      <input type="file" class="form-control" name="fileConvocazione" id="fileConvocazione" />
+                    </div>              
+                  </div>      
+
+                  <div class="form-group row">
+                    <div class="col-12 col-md-10">
+                        <label class="form-label" for="fileVerbale">Verbale riunione</label>
+                        <input type="file" class="form-control" name="fileVerbale" id="fileVerbale">
+                    </div>              
+                  </div>      
+
+                  <div class="form-group row">
+                    <div class="col-12 col-md-10">
+                          <label class="form-label" for="fileVideoRiunione">Video riunione</label>
+                          <input type="file" class="form-control" name="fileVideoRiunione" id="fileVideoRiunione">
+                      </div>              
+                  </div>   
+
+<?php endif; ?>
+
                   <br>
 
                   <div class="form-group row">
@@ -246,7 +345,7 @@ $disabled_scheda="";
                     </div>
                   </div>
                   <input type="hidden" name="_salva" id="_salva" value="true">
-                  <input type="hidden" name="fk_idrebuilding_gld" id="fk_idrebuilding_gld" value="<?php echo $pfk_idrebuilding_gld ?>" >
+                  <input type="hidden" name="igl" id="igl" value="<?php echo $pfk_idrebuilding_gld ?>" >
                   <input type="hidden" name="idr" id="idr" value="<?php echo $pidincontro ?>" >
                 </form>
 
