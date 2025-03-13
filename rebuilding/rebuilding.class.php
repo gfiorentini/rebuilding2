@@ -1,5 +1,56 @@
 <?php
 
+
+
+/**
+ * Incontri dei Gruppi di Lavoro.  
+ */
+class rebuildingGruppiDiLavoroIncontri {
+	
+	public $idincontro;
+	public $fk_idrebuilding_gld;
+	public $incontro_titolo;
+	public $incontro_abstract;
+	public $incontro_giorno;
+	public $incontro_file_agenda;
+	public $incontro_file_verbale;
+	public $incontro_file_video;
+	public $incontro_dt_created;
+	public $incontro_op_created;
+	public $incontro_dt_last_modified;
+	public $incontro_op_last_modified;
+
+
+	public function __construct($idincontro=null) 
+	{
+		global $db;
+		if(!empty($idincontro))
+		{
+			$this->idincontro=$idincontro;
+			
+			$sSQL="SELECT * FROM rebuilding_gruppi_di_lavoro_incontri WHERE idincontro=$idincontro";
+			$aNEWS=$db->select($sSQL);
+			//
+			foreach ($aNEWS as $key => $rows) 
+			{
+				$this->fk_idrebuilding_gld			=$rows["fk_idrebuilding_gld"];
+				$this->incontro_titolo					=$rows["incontro_titolo"];
+				$this->incontro_abstract				=$rows["incontro_abstract"];
+				$this->incontro_giorno					=$rows["incontro_giorno"];		
+				$this->incontro_file_agenda			=$rows["incontro_file_agenda"];
+				$this->incontro_file_verbale		=$rows["incontro_file_verbale"];
+				$this->incontro_file_video			=$rows["incontro_file_video"];
+				$this->incontro_dt_created			=$rows["incontro_dt_created"];	
+				$this->incontro_op_created			=$rows["incontro_op_created"];
+				$this->incontro_dt_last_modified	=$rows["incontro_dt_last_modified"];
+				$this->incontro_op_last_modified	=$rows["incontro_op_last_modified"];									
+			}	
+		}
+	}
+}
+
+
+
 class rebuildingSPORTELLO {
 
 	public $idrebuilding_sportello;

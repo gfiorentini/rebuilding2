@@ -36,8 +36,8 @@ $operatore_flagamministratore=$db->getVALUE("select operatore_flagamministratore
 $gidr = -1;
 
 // Controlla se ci sono parametri nella query string
-if (isset($_GET['idr']) ) {
-  $gidr = intval( $_GET['idr'] );
+if (isset($_GET['igl']) ) {
+  $gidr = intval( $_GET['igl'] );
 } else {
   die("Errore: gruppi id gruppo tematico errato errati.");
 }
@@ -120,13 +120,13 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
           <div class="col-6">    
               <p align="right">
               <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>                
-                  <button type="button" class="btn btn-primary-soft btn-xs" onclick="xxxxx('0')"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</button>
+                  <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=" class="btn btn-primary-soft btn-xs" onclick="xxxxx('0')"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</a>
               <?php else: ?>
                   <!-- HTML code to display if condition is false -->
                   <a href="#" class="btn btn-primary" >########</a>
               <?php endif; ?>                  
-                  <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxx();"><i class="fe fe-list"></i>&nbsp;Esporta in excel</button>
-                  <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxxx();"><i class="fe fe-search"></i>&nbsp;Ricerca</button>
+                  <!-- <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxx();"><i class="fe fe-list"></i>&nbsp;Esporta in excel</button>
+                  <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxxx();"><i class="fe fe-search"></i>&nbsp;Ricerca</button> -->
               </p>
           </div>  
         </div> 
@@ -147,7 +147,7 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
 
           <!-- PER OGNI GRUPPO DI LAVORO DELLA CLASSE gdlclass  -->
 
-          <a href="#" class="list-group-item list-group-item-action " aria-current="true">
+          <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class="list-group-item list-group-item-action " aria-current="true">
             <div class="d-flex w-100 justify-content-between">
               <h4 class="mb-1"><?php echo $incontro["incontro_titolo"]  ; ?></h4>
               <small><?php echo ( new DateTime( $incontro["incontro_giorno"]))->format("d-m-Y"); ?></small>

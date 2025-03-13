@@ -98,7 +98,7 @@ exists (
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_list_giornate?idr=<?php echo $rm_gruppo["idrebuilding_gld"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
+                <a href="rebuilding_riunioni_list_giornate?igl=<?php echo $rm_gruppo["idrebuilding_gld"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
               </h3>
 
               <!-- Text -->
