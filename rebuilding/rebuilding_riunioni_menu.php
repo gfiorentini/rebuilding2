@@ -75,6 +75,49 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 
         <div class="row">
 
+
+
+        <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
+              <!-- Icon -->
+              <div class="icon icon-lg mb-3">
+                <img src="../librerie/assets/img/analytics.png">  
+              </div>
+
+              <!-- Heading -->
+              <h3 class="fw-bold">
+                <a href="rebuilding_riunioni_gdl_lista?gdlclass=conferenzacoord" class="dropdown-item fw-bold text-decoration-none">Conferenza dei Coordinatori di ATS</a>
+               
+              </h3>
+
+              <!-- Text -->
+              <p class="text-muted mb-8 mb-lg-0">
+             
+
+
+          </div>
+
+
+          <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
+              <!-- Icon -->
+              <div class="icon icon-lg mb-3">
+                <img src="../librerie/assets/img/analytics.png">  
+              </div>
+
+              <!-- Heading -->
+              <h3 class="fw-bold">
+                <a href="rebuilding_riunioni_gdl_lista?gdlclass=comitatorete" class="dropdown-item fw-bold text-decoration-none">Comitato Rete</a>
+               
+              </h3>
+
+              <!-- Text -->
+              <p class="text-muted mb-8 mb-lg-0">
+             
+
+
+          </div>
+
+
+
           <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
               <!-- Icon -->
               <div class="icon icon-lg mb-3">

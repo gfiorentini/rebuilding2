@@ -62,6 +62,10 @@ $riunioniRootGruppo = $riunioniRoot. $gcurrentgruppo[0]["gdl_path"] . '/';
 
 $incontroDAO=new rebuildingGruppiDiLavoroIncontri($pidincontro);
 
+$url_incontro_file_agenda = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_agenda ; 
+$url_incontro_file_verbale = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_verbale ; 
+$url_incontro_file_video = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_video ; 
+
 $disabled_scheda="";
 
 
@@ -72,7 +76,7 @@ $disabled_scheda="";
   	 <?php echo getREBUILDINGHEAD(true); ?>
 
      <link rel="stylesheet" href="../librerie/css/bootstrap-select.css">
-
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   </head>
   <body class="bg-light">
 
@@ -88,14 +92,14 @@ $disabled_scheda="";
 		$aBREADCUMB[1]["titolo_pagina"]="Toolkit";
 		$aBREADCUMB[1]["url"]="toolkit_menu";
 
-    $aBREADCUMB[2]["titolo_pagina"]="Gruppi di Lavoro";
-    $aBREADCUMB[2]["url"]="toolkit";
+		$aBREADCUMB[2]["titolo_pagina"]="Riunioni";
+		$aBREADCUMB[2]["url"]="rebuilding_riunioni_menu";
 
-    $aBREADCUMB[3]["titolo_pagina"]="Riunioni";
-    $aBREADCUMB[3]["url"]="rendicontazione";
+    $aBREADCUMB[3]["titolo_pagina"]= $gcurrentgruppo[0]["gdl_titolo"];
+    $aBREADCUMB[3]["url"]="rebuilding_riunioni_list_giornate?igl=$pfk_idrebuilding_gld" ;
 
-    $aBREADCUMB[4]["titolo_pagina"]="Scheda";
-    $aBREADCUMB[4]["url"]="";
+    $aBREADCUMB[4]["titolo_pagina"]="Riunione";
+    $aBREADCUMB[4]["url"]="#";
 
 		generaBREADCUMB($aBREADCUMB);
 
@@ -134,7 +138,7 @@ $disabled_scheda="";
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
                         <input type="text"  readonly aria-readonly="true" id="form_incontro_abstract" name="form_incontro_abstract" class="form-control form-control-flush" required placeholder="Inserire abstract riunione" value="<?php echo $incontroDAO->incontro_abstract;?>" <?php echo $disabled_scheda;?> >
-                        <label for="form_incontro_abstract">Abstract</label>
+                        <label for="form_incontro_abstract">Ordine del giorno</label>
                       </div> 
                     </div>  
 
@@ -147,26 +151,39 @@ $disabled_scheda="";
                   </div>      
 
 
-                  <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                      <label class="form-label" for="fileConvocazione">Documento di convocazione</label>
-                      <a href="/riunioni/gruppo1/incontro1/Presentazione_Piattaforma_Flussi_V1.pdf" target="_blank" class="btn btn-primary" >Download</a>
-                    </div>              
-                  </div>      
+                  <div class="row">
+                    <div class="col"> <label class="form-label" for="fileConvocazione">Convocazione</label>
+                    </div>
+                    <div class="col"><a href="<?php echo  $url_incontro_file_agenda ; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo  $incontroDAO->incontro_file_agenda ; ?></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col"><label class="form-label" for="fileVideoRiunione">Registrazione</label>
+                    </div>
+                    <div class="col"> <a href="<?php echo $url_incontro_file_video ; ?>" target="_blank" ><i class="bi bi-play-fill"></i> <?php echo $incontroDAO->incontro_file_video ; ?></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col"> <label class="form-label" for="fileVerbale">Resoconto</label>
+                    </div>
+                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                    </div>
+                  </div>
 
-                  <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                        <label class="form-label" for="fileVerbale">Verbale riunione</label>
-                        <a href="" target="_blank" class="btn btn-primary" >Download</a>
-                    </div>              
-                  </div>      
+                  <div class="row">
+                    <div class="col"> <label class="form-label" for="fileVerbale">Trascrizione</label>
+                    </div>
+                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                    </div>
+                  </div>
 
-                  <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                          <label class="form-label" for="fileVideoRiunione">Video riunione</label>
-                          <a href="" target="_blank" class="btn btn-primary" >Download</a>
-                      </div>              
-                  </div>   
+                  <div class="row">
+                    <div class="col"> <label class="form-label" for="fileVerbale">Ulteriore Documentazione</label>
+                    </div>
+                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                    </div>
+                  </div>                  
+
 
                   <?php if (!getPARAMETRO("_nuovo")):   ?>
                   <?php endif; ?>

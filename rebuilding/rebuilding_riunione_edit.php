@@ -285,7 +285,7 @@ $disabled_scheda="";
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
                         <input type="text" id="form_incontro_abstract" name="form_incontro_abstract" class="form-control form-control-flush" required placeholder="Inserire abstract riunione" value="<?php echo $incontroDAO->incontro_abstract;?>" <?php echo $disabled_scheda;?> >
-                        <label for="form_incontro_abstract">Abstract</label>
+                        <label for="form_incontro_abstract">Ordine del giorno</label>
                       </div> 
                     </div>  
 
@@ -307,36 +307,44 @@ $disabled_scheda="";
 
                   <div class="form-group row">
                     <div class="col-12 col-md-10">
-                      <label class="form-label" for="fileConvocazione">Documento di convocazione</label>
+                      <label class="form-label" for="fileConvocazione">Convocazione</label>
                       <input type="file" class="form-control" name="fileConvocazione" id="fileConvocazione" />
                     </div>              
                   </div>      
 
+
                   <div class="form-group row">
                     <div class="col-12 col-md-10">
-                        <label class="form-label" for="fileVerbale">Verbale riunione</label>
+                          <label class="form-label" for="fileVideoRiunione">Registrazione</label>
+                          <input type="file" class="form-control" name="fileVideoRiunione" id="fileVideoRiunione">
+                      </div>              
+                  </div>   
+
+                  <div class="form-group row">
+                    <div class="col-12 col-md-10">
+                        <label class="form-label" for="fileVerbale">Resoconto</label>
                         <input type="file" class="form-control" name="fileVerbale" id="fileVerbale">
                     </div>              
                   </div>      
 
                   <div class="form-group row">
                     <div class="col-12 col-md-10">
-                          <label class="form-label" for="fileVideoRiunione">Video riunione</label>
-                          <input type="file" class="form-control" name="fileVideoRiunione" id="fileVideoRiunione">
-                      </div>              
-                  </div>   
+                        <label class="form-label" for="fileVerbale">Trascrizione</label>
+                        <input type="file" class="form-control" name="fileTrascrizione" id="fileTrascrizione">
+                    </div>              
+                  </div>  
+
+                  <div class="form-group row">
+                    <div class="col-12 col-md-10">
+                        <label class="form-label" for="fileVerbale">Altra documentazione (ZIP)</label>
+                        <input type="file" class="form-control" name="fileAltraDocumentazione" id="fileAltraDocumentazione">
+                    </div>              
+                  </div>                    
+
 
 <?php endif; ?>
 
-                  <br>
 
-                  <div class="form-group row">
-                    <div class="col-12">
-                      <p align="right">
-                        <button type="button" class="btn btn-primary btn-xs" onclick="addALLEGATO()" ><i class="fe fe-plus"></i>&nbsp; Allegato</button>             
-                      </p> 
-                    </div>
-                  </div>
 
                   <div class="row">
                     <div class="col-12">
