@@ -2,6 +2,19 @@
 // Path to the video file
 $videoFile = "./video/video.mp4";
 
+
+if (isset($_GET['video'])) {
+    // The parameter exists
+    $videoFile = $_GET['video'];
+
+    $videoFile =  $_SERVER['DOCUMENT_ROOT'] . $videoFile;
+    // echo "The value of 'parameter_name' is: " . htmlspecialchars($value);
+} else {
+    echo "The 'parameter_name' parameter does not exist in the querystring.";
+    exit;
+}
+
+
 if (!file_exists($videoFile)) {
     header("HTTP/1.1 404 Not Found");
     exit;

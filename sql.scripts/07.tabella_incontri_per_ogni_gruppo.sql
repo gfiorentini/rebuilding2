@@ -18,5 +18,7 @@ CREATE TABLE `rebuilding_gruppi_di_lavoro_incontri` (
   `incontro_op_created` varchar(256) default null,
   `incontro_dt_last_modified` TIMESTAMP default CURRENT_TIMESTAMP,
   `incontro_op_last_modified` varchar(256) default null ,
+  `incontro_file_trascrizione` varchar(256) DEFAULT NULL NULL,
+  `incontro_file_altro_materiale` varchar(256) DEFAULT NULL NULL,
   PRIMARY KEY (`idincontro`)
 ) ENGINE=MyISAM ;

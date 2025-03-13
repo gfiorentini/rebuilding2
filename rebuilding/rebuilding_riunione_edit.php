@@ -127,6 +127,8 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     , incontro_file_agenda
     , incontro_file_verbale
     , incontro_file_video
+    , incontro_file_trascrizione
+    , incontro_file_altro_materiale
     , incontro_dt_created
     , incontro_op_created
     , incontro_dt_last_modified
@@ -134,7 +136,7 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     ) VALUES ($pfk_idrebuilding_gld
     , '$pform_incontro_titolo'
     , '$pincontro_abstract'
-    , '$pincontro_giorno', NULL, NULL, NULL, current_timestamp(), NULL, current_timestamp(), NULL);";
+    , '$pincontro_giorno', NULL, NULL, NULL, NULL , NULL, current_timestamp(), NULL, current_timestamp(), NULL);";
     $db->query($sSQL);
     // legge nuovo ID
     $pidincontro=$db->insert_id();
@@ -177,6 +179,29 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
       $db->query($sSQL);
     }
   }
+
+  if (isset($_FILES['fileTrascrizione']) && $_FILES['fileTrascrizione']['error'] !== UPLOAD_ERR_NO_FILE) {
+    $targetFile = $riunioneRoot . basename($_FILES["fileTrascrizione"]["name"]);
+    if (move_uploaded_file($_FILES["fileTrascrizione"]["tmp_name"], $targetFile)) {
+      // ok. 
+      $filename = $_FILES["fileTrascrizione"]["name"];
+      $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri SET incontro_file_trascrizione='$filename' WHERE idincontro=$pidincontro;"; 
+      $db->query($sSQL);
+    }
+  }
+
+  if (isset($_FILES['fileAltraDocumentazione']) && $_FILES['fileAltraDocumentazione']['error'] !== UPLOAD_ERR_NO_FILE) {
+    $targetFile = $riunioneRoot . basename($_FILES["fileAltraDocumentazione"]["name"]);
+    if (move_uploaded_file($_FILES["fileAltraDocumentazione"]["tmp_name"], $targetFile)) {
+      // ok. 
+      $filename = $_FILES["fileAltraDocumentazione"]["name"];
+      $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri SET incontro_file_altro_materiale='$filename' WHERE idincontro=$pidincontro;"; 
+      $db->query($sSQL);
+    }
+  }
+
+   
+
 
 }
 elseif(getPARAMETRO("_elimina") && $operatore_flagamministratore==1 && empty($operatore_flagdirigente))
@@ -338,7 +363,7 @@ $disabled_scheda="";
                     <div class="col-12 col-md-10">
                         <label class="form-label" for="fileVerbale">Altra documentazione (ZIP)</label>
                         <input type="file" class="form-control" name="fileAltraDocumentazione" id="fileAltraDocumentazione">
-                    </div>              
+                    </div>             
                   </div>                    
 
 

@@ -62,9 +62,31 @@ $riunioniRootGruppo = $riunioniRoot. $gcurrentgruppo[0]["gdl_path"] . '/';
 
 $incontroDAO=new rebuildingGruppiDiLavoroIncontri($pidincontro);
 
-$url_incontro_file_agenda = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_agenda ; 
-$url_incontro_file_verbale = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_verbale ; 
-$url_incontro_file_video = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_video ; 
+if (empty($incontroDAO->incontro_file_agenda)) {
+  $url_incontro_file_agenda = "#";
+} else {
+  $url_incontro_file_agenda = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_agenda ; 
+}
+if (empty($incontroDAO->incontro_file_verbale)) {
+  $url_incontro_file_verbale = "#";
+} else {
+  $url_incontro_file_verbale = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_verbale ; 
+}
+if (empty($incontroDAO->incontro_file_video)) {
+  $url_incontro_file_video = "#";
+} else {
+  $url_incontro_file_video = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_video ; 
+}
+if (empty($incontroDAO->incontro_file_trascrizione)) {
+  $url_incontro_file_trascrizione = "#";
+} else {
+  $url_incontro_file_trascrizione = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_trascrizione ; 
+}
+if (empty($incontroDAO->incontro_file_altro_materiale)) {
+  $url_incontro_file_altro_materiale = "javascript:void(0)";
+} else {
+  $url_incontro_file_altro_materiale = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_altro_materiale ; 
+}
 
 $disabled_scheda="";
 
@@ -154,33 +176,39 @@ $disabled_scheda="";
                   <div class="row">
                     <div class="col"> <label class="form-label" for="fileConvocazione">Convocazione</label>
                     </div>
-                    <div class="col"><a href="<?php echo  $url_incontro_file_agenda ; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo  $incontroDAO->incontro_file_agenda ; ?></a>
+                    <div class="col"><a href="<?php echo  $url_incontro_file_agenda ; ?>"   ><i class="bi bi-download"></i> <?php echo  $incontroDAO->incontro_file_agenda ; ?></a>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col"><label class="form-label" for="fileVideoRiunione">Registrazione</label>
                     </div>
-                    <div class="col"> <a href="<?php echo $url_incontro_file_video ; ?>" target="_blank" ><i class="bi bi-play-fill"></i> <?php echo $incontroDAO->incontro_file_video ; ?></a>
+                    <div class="col"> <a href="<?php echo $url_incontro_file_video ; ?>"  ><i class="bi bi-play-fill"></i> <?php echo $incontroDAO->incontro_file_video ; ?></a>
                     </div>
+                  </div>
+                  <div class="row">
+                  <video controls width="640" height="360">
+                        <source src="/stream.php?video=<?php echo $url_incontro_file_video ; ?>" type="video/mp4" />
+                        Your browser does not support the video tag.
+                  </video>
                   </div>
                   <div class="row">
                     <div class="col"> <label class="form-label" for="fileVerbale">Resoconto</label>
                     </div>
-                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col"> <label class="form-label" for="fileVerbale">Trascrizione</label>
                     </div>
-                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                    <div class="col"><a href="<?php echo $url_incontro_file_trascrizione; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_trascrizione; ?></a>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col"> <label class="form-label" for="fileVerbale">Ulteriore Documentazione</label>
                     </div>
-                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>" target="_blank"  ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                    <div class="col"><a href="<?php echo $url_incontro_file_altro_materiale; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_altro_materiale; ?></a>
                     </div>
                   </div>                  
 
