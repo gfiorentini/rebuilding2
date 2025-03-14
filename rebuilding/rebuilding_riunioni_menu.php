@@ -85,12 +85,14 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_gdl_lista?gdlclass=conferenzacoord" class="dropdown-item fw-bold text-decoration-none">Conferenza dei Coordinatori di ATS</a>
+                <a href="rebuilding_riunioni_gdl_lista?gdlclass=conferenzacoord" class="dropdown-item fw-bold text-decoration-none">Conferenza Coordinatori ATS</a>
                
               </h3>
 
               <!-- Text -->
               <p class="text-muted mb-8 mb-lg-0">
+              Conferenza permanente dei Coordinatori di ATS
+              </p>
              
 
 
@@ -105,19 +107,34 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_gdl_lista?gdlclass=comitatorete" class="dropdown-item fw-bold text-decoration-none">Comitato Rete</a>
+                <a href="rebuilding_riunioni_gdl_lista?gdlclass=tavpermentigest" class="dropdown-item fw-bold text-decoration-none">Tavolo Enti Gestori</a>
                
               </h3>
 
               <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0">
-             
-
-
+              <p class="text-muted mb-8 mb-lg-0"> Tavolo permanente Enti Gestori  </p>
           </div>
 
 
+          <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
+              <!-- Icon -->
+              <div class="icon icon-lg mb-3">
+                <img src="../librerie/assets/img/analytics.png">  
+              </div>
 
+              <!-- Heading -->
+              <h3 class="fw-bold">
+                <a href="rebuilding_riunioni_gdl_lista?gdlclass=comitatorete" class="dropdown-item fw-bold text-decoration-none">Comitato tecnico</a>
+               
+              </h3>
+
+              <!-- Text -->
+              <p class="text-muted mb-8 mb-lg-0">Comitato tecnico a supporto del tavolo 
+              regionale della rete della protezione e dell’inclusione sociale   </p>
+          </div>
+ 
+
+          
           <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
               <!-- Icon -->
               <div class="icon icon-lg mb-3">
@@ -131,29 +148,11 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
               </h3>
 
               <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0">
-              Gruppi di lavoro tematici
+              <p class="text-muted mb-8 mb-lg-0">  Gruppi di lavoro tematici </p>
+              
 
 
           </div>
-
-          <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
-              <!-- Icon -->
-              <div class="icon icon-lg mb-3">
-                <img src="../librerie/assets/img/biblioteca.png" style="width: 20%">  
-              </div>
-
-              <!-- Heading -->
-              <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_gdl_lista?gdlclass=comitato" class="dropdown-item fw-bold text-decoration-none">Gruppi di lavoro Comitato Tecnico</a>
-              </h3>
-
-              <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0">
-                Gruppi di lavoro Comitato Tecnico a supporto del Tavolo regionale della Rete della Prevenzione e Inclusione Sociale
-              </p>
-
-          </div>        
              
 
         </div>  

@@ -250,14 +250,14 @@ $disabled_scheda="";
 		$aBREADCUMB[1]["titolo_pagina"]="Toolkit";
 		$aBREADCUMB[1]["url"]="toolkit_menu";
 
-    $aBREADCUMB[2]["titolo_pagina"]="Gruppi di Lavoro";
-    $aBREADCUMB[2]["url"]="toolkit";
+		$aBREADCUMB[2]["titolo_pagina"]="Riunioni";
+		$aBREADCUMB[2]["url"]="rebuilding_riunioni_menu";
 
-    $aBREADCUMB[3]["titolo_pagina"]="Riunioni";
-    $aBREADCUMB[3]["url"]="rendicontazione";
+    $aBREADCUMB[3]["titolo_pagina"]= $gcurrentgruppo[0]["gdl_titolo"];
+    $aBREADCUMB[3]["url"]="rebuilding_riunioni_list_giornate?igl=$pfk_idrebuilding_gld" ;
 
-    $aBREADCUMB[4]["titolo_pagina"]="Scheda";
-    $aBREADCUMB[4]["url"]="";
+    $aBREADCUMB[4]["titolo_pagina"]="Riunione";
+    $aBREADCUMB[4]["url"]="#";
 
 		generaBREADCUMB($aBREADCUMB);
 

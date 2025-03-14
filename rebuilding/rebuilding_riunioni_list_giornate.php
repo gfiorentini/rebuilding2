@@ -98,9 +98,15 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
               </li>
               <li  class="breadcrumb-item active" aria-current="page">
               <a href="toolkit_menu" class="text-gray-700"> Toolkit</a>
-              </li>              
+              </li>       
+              <li  class="breadcrumb-item active" aria-current="page">
+              <a href="rebuilding_riunioni_menu" class="text-gray-700"> Riunioni</a>
+              </li>         
               <li class="breadcrumb-item active" aria-current="page">
-                Riunioni - Giornate e materiale incontri effettuati. *** sistemare *** 
+                <a href='rebuilding_riunioni_gdl_lista?gdlclass=<?php  echo $gcurrentgruppo[0]["gdl_tipo"]; ?>'  >Gruppi</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <a href='#'  ><?php  echo $gcurrentgruppo[0]["gdl_titolo"]; ?></a>
               </li>
             </ol>
 
