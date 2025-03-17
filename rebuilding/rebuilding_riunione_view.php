@@ -99,6 +99,17 @@ $disabled_scheda="";
 
      <link rel="stylesheet" href="../librerie/css/bootstrap-select.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+     <style>
+    textarea {
+        height: 8em !important; /* 5 rows with additional space for padding */
+        line-height: 1.2em; /* Adjust line height if needed */
+    }
+
+
+     </style>
+
   </head>
   <body class="bg-light">
 
@@ -159,7 +170,7 @@ $disabled_scheda="";
 
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
-                        <input type="text"  readonly aria-readonly="true" id="form_incontro_abstract" name="form_incontro_abstract" class="form-control form-control-flush" required placeholder="Inserire abstract riunione" value="<?php echo $incontroDAO->incontro_abstract;?>" <?php echo $disabled_scheda;?> >
+                      <textarea id="form_incontro_abstract" rows="5" readonly aria-readonly="true"  name="form_incontro_abstract" class="form-control form-control-flush"  placeholder="Inserire abstract riunione" > <?php echo $incontroDAO->incontro_abstract;?></textarea> 
                         <label for="form_incontro_abstract">Ordine del giorno</label>
                       </div> 
                     </div>  

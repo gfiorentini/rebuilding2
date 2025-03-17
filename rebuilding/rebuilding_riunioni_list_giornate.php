@@ -3,7 +3,9 @@
 require_once("./rebuilding_connect.php");
 require_once("../librerie/funzionigenerali.php");
 require_once("../librerie/rebuilding.class.php");
+require_once("../librerie/dara.class.servizi.php");
 
+$aENTI=array(1=>"ATS1 - Pesaro",3=>"ATS3 - C.M. Catria e Nerone",4=>"ATS4 - Urbino",5=>"ATS5 - C.M. Montefeltro",6=>"ATS6 - Fano",7=>"ATS7 - Fossombrone",8=>"ATS8 - Senigallia",9=>"ATS9 - ASP Ambito 9 Jesi",10=>"ATS10 - Fabriano",11=>"ATS11 - Ancona",12=>"ATS12 - Falconara Marittima",13=>"ATS13 - Osimo",14=>"ATS14 - Civitanova Marche",15=>"ATS15 - Macerata",16=>"ATS16 - C.M. Monti Azzurri",17=>"ATS17 - Unione montanta alta valle del potenza e dell'Esino",18=>"ATS18 - C.M. Camerino",19=>"ATS19 - Fermo",20=>"ATS20 - Porto Sant'Elpidio",21=>"ATS 21 - San Benedetto del Tronto",22=>"ATS22 - Ascoli Piceno",23=>"ATS23 - U.C. Vallata del Tronto",24=>"ATS24 - C.M. dei Sibillini");
 $idoperatore=verificaUSER();
 
 //$operatore=new DARAOperatore($idoperatore);
@@ -22,7 +24,10 @@ function checkAndCreateDirectory($directory) {
   }
 }
 
-
+$operatore=new DARAOperatore($idoperatore);
+$operatore_ente=$operatore->operatore_ente;
+// $centroterritorialeOPERATORE=     $aENTI[$operatore_ente];
+$centroterritorialeOPERATORE= array_key_exists($operatore_ente, $aENTI) ? $aENTI[$operatore_ente] : null;
 
 
 //GF
@@ -120,7 +125,8 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
       <div class="col-10 offset-1">
         <div class="row">
           <div class="col-6">
-              <p align="left"></p><div class="badge bg-secondary-soft">PROFILO REGIONALE</div><p></p>  
+              <!-- <p align="left"></p><div class="badge bg-secondary-soft">PROFILO REGIONALE</div><p></p>   -->
+              <p align="left"><?php if(!$operatore_flagamministratore) echo '<div class="badge bg-secondary-soft">PROFILO ATS '.$centroterritorialeOPERATORE.'</div>'; else echo '<div class="badge bg-secondary-soft">PROFILO REGIONALE</div>';?></p>  
 
           </div>    
           <div class="col-6">    

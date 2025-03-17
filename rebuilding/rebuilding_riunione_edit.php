@@ -377,7 +377,10 @@ $disabled_scheda="";
                             class="form-control form-control-text form-control-xs " 
                             disabled aria-disabled="true"
                             value="<?php echo $incontroDAO->incontro_file_video ?>">          
-                    </div>                                   
+                    </div>   
+                    <div class="col-1 col-md-1">
+                      <a class="btn btn-danger btn-xs" href="#" onclick="remove_allegato(<?php echo $pidincontro ?>, 'incontro_file_video' );" ><i class="bi bi-trash"></i></a>        
+                    </div>                                
                   </div>   
 
                   <div class="form-group row">
@@ -394,7 +397,10 @@ $disabled_scheda="";
                             class="form-control form-control-text form-control-xs " 
                             disabled aria-disabled="true"
                             value="<?php echo $incontroDAO->incontro_file_verbale ?>">          
-                    </div>                                
+                    </div>     
+                    <div class="col-1 col-md-1">
+                      <a class="btn btn-danger btn-xs" href="#" onclick="remove_allegato(<?php echo $pidincontro ?>, 'incontro_file_verbale' );" ><i class="bi bi-trash"></i></a>        
+                    </div>                           
                   </div>      
 
                   <div class="form-group row">
@@ -411,7 +417,10 @@ $disabled_scheda="";
                             class="form-control form-control-text form-control-xs " 
                             disabled aria-disabled="true"
                             value="<?php echo $incontroDAO->incontro_file_trascrizione ?>">          
-                    </div>                               
+                    </div>    
+                    <div class="col-1 col-md-1">
+                      <a class="btn btn-danger btn-xs" href="#" onclick="remove_allegato(<?php echo $pidincontro ?>, 'incontro_file_trascrizione' );" ><i class="bi bi-trash"></i></a>        
+                    </div>                           
                   </div>  
 
                   <div class="form-group row">
@@ -428,7 +437,10 @@ $disabled_scheda="";
                             class="form-control form-control-text form-control-xs " 
                             disabled aria-disabled="true"
                             value="<?php echo $incontroDAO->incontro_file_altro_materiale ?>">          
-                    </div>                                  
+                    </div>   
+                    <div class="col-1 col-md-1">
+                      <a class="btn btn-danger btn-xs" href="#" onclick="remove_allegato(<?php echo $pidincontro ?>, 'incontro_file_altro_materiale' );" ><i class="bi bi-trash"></i></a>        
+                    </div>                               
                   </div>                    
 
 
@@ -489,7 +501,7 @@ function remove_allegato( idriunione, tipoallegato ) {
                 
         // window.location.reload();
         // window.location.href = window.location.href;
-        window.location.href = window.location.href.split('#')[0] + "?idgl<?php echo $pfk_idrebuilding_gld ?>&idl=<?php echo $pidincontro ?>";
+        window.location.href = "rebuilding_riunione_edit?igl=<?php echo $pfk_idrebuilding_gld ?>&idr=<?php echo $pidincontro ?>";
       },
       error: function()
       {

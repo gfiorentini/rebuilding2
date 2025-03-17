@@ -149,7 +149,7 @@ function load_data(page = 1)
 
   var query = JSON.stringify(myObj);
 
-  //var query='<?php echo $jsonQUERY; ?>';
+  
 
   $.ajax({
     type: "POST",
