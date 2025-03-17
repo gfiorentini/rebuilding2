@@ -235,6 +235,16 @@ $disabled_scheda="";
 
      <link rel="stylesheet" href="../librerie/css/bootstrap-select.css">
 
+
+     <style>
+    textarea {
+        height: 8em !important; /* 5 rows with additional space for padding */
+        line-height: 1.2em; /* Adjust line height if needed */
+    }
+
+
+     </style>
+
   </head>
   <body class="bg-light">
 
@@ -308,9 +318,9 @@ $disabled_scheda="";
                     </div>  
 
                     <div class="col-12 col-md-10">
-                      <div class="form-floating">
-                        <input type="text" id="form_incontro_abstract" name="form_incontro_abstract" class="form-control form-control-flush" required placeholder="Inserire abstract riunione" value="<?php echo $incontroDAO->incontro_abstract;?>" <?php echo $disabled_scheda;?> >
-                        <label for="form_incontro_abstract">Ordine del giorno</label>
+                      <div class=" form-floating fix-floating-label">
+                      <textarea id="form_incontro_abstract" rows="5"  name="form_incontro_abstract" class="form-control form-control-flush" required placeholder="Inserire abstract riunione" <?php echo $disabled_scheda;?>   ><?php echo $incontroDAO->incontro_abstract;?></textarea> 
+                      <label for="form_incontro_abstract">Ordine del giorno</label>
                       </div> 
                     </div>  
 
@@ -331,39 +341,90 @@ $disabled_scheda="";
 
 
                   <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                      <label class="form-label" for="fileConvocazione">Convocazione</label>
-                      <input type="file" class="form-control" name="fileConvocazione" id="fileConvocazione" />
-                    </div>              
+                    <div class="col-3 col-md-3">
+                      <label class="form-label form-control-xs" for="fileConvocazione">Convocazione</label>
+                    </div>
+                    <div class="col-4 col-md-4">
+                      
+                      <input type="file" class="form-control form-control-text  form-control-xs" name="fileConvocazione" id="fileConvocazione" />
+                    </div>    
+                    <div class="col-4 col-md-4">
+                      <input type="text" 
+                          id="fileConvocazione_text" 
+                          name="fileConvocazione_text" 
+                          class="form-control form-control-text form-control-xs " 
+                          disabled aria-disabled="true"
+                          value="<?php echo $incontroDAO->incontro_file_agenda ?>">          
+                    </div>
                   </div>      
 
 
                   <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                          <label class="form-label" for="fileVideoRiunione">Registrazione</label>
-                          <input type="file" class="form-control" name="fileVideoRiunione" id="fileVideoRiunione">
-                      </div>              
+                    <div class="col-3 col-md-3">
+                      <label class="form-label  form-control-xs" for="fileVideoRiunione">Registrazione</label>
+                    </div>
+                    <div class="col-4 col-md-4">
+                          <input type="file" class="form-control  form-control-text  form-control-xs" name="fileVideoRiunione" id="fileVideoRiunione">
+                      </div> 
+                    <div class="col-4 col-md-4">
+                      <input type="text" 
+                            id="fileVideoRiunione_text" 
+                            name="fileVideoRiunione_text" 
+                            class="form-control form-control-text form-control-xs " 
+                            disabled aria-disabled="true"
+                            value="<?php echo $incontroDAO->incontro_file_video ?>">          
+                    </div>                                   
                   </div>   
 
                   <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                        <label class="form-label" for="fileVerbale">Resoconto</label>
-                        <input type="file" class="form-control" name="fileVerbale" id="fileVerbale">
-                    </div>              
+                    <div class="col-3 col-md-3">
+                      <label class="form-label  form-control-xs" for="fileVerbale">Resoconto</label>
+                    </div>
+                    <div class="col-4 col-md-4">
+                        <input type="file" class="form-control  form-control-text  form-control-xs" name="fileVerbale" id="fileVerbale">
+                    </div>   
+                    <div class="col-4 col-md-4">
+                      <input type="text" 
+                            id="fileVerbale_text" 
+                            name="fileVerbale_text" 
+                            class="form-control form-control-text form-control-xs " 
+                            disabled aria-disabled="true"
+                            value="<?php echo $incontroDAO->incontro_file_verbale ?>">          
+                    </div>                                
                   </div>      
 
                   <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                        <label class="form-label" for="fileVerbale">Trascrizione</label>
-                        <input type="file" class="form-control" name="fileTrascrizione" id="fileTrascrizione">
-                    </div>              
+                    <div class="col-3 col-md-3">
+                      <label class="form-label form-control-xs" for="fileTrascrizione">Trascrizione</label>
+                    </div>
+                    <div class="col-4 col-md-4">
+                        <input type="file" class="form-control  form-control-text  form-control-xs" name="fileTrascrizione" id="fileTrascrizione">
+                    </div>       
+                    <div class="col-4 col-md-4">
+                      <input type="text" 
+                            id="fileTrascrizione_text" 
+                            name="fileTrascrizione_text" 
+                            class="form-control form-control-text form-control-xs " 
+                            disabled aria-disabled="true"
+                            value="<?php echo $incontroDAO->incontro_file_trascrizione ?>">          
+                    </div>                               
                   </div>  
 
                   <div class="form-group row">
-                    <div class="col-12 col-md-10">
-                        <label class="form-label" for="fileVerbale">Altra documentazione (ZIP)</label>
-                        <input type="file" class="form-control" name="fileAltraDocumentazione" id="fileAltraDocumentazione">
-                    </div>             
+                    <div class="col-3 col-md-3">
+                      <label class="form-label form-control-xs" for="fileAltraDocumentazione">Altra documentazione (ZIP)</label>
+                    </div>                    
+                    <div class="col-4 col-md-4">
+                        <input type="file" class="form-control  form-control-text  form-control-xs" name="fileAltraDocumentazione" id="fileAltraDocumentazione">
+                    </div>     
+                    <div class="col-4 col-md-4">
+                      <input type="text" 
+                            id="fileAltraDocumentazione_text" 
+                            name="fileAltraDocumentazione_text" 
+                            class="form-control form-control-text form-control-xs " 
+                            disabled aria-disabled="true"
+                            value="<?php echo $incontroDAO->incontro_file_altro_materiale ?>">          
+                    </div>                                  
                   </div>                    
 
 
@@ -372,7 +433,7 @@ $disabled_scheda="";
 
 
                   <div class="row">
-                    <div class="col-12">
+                    <div class="col-10">
                       <button type="button" class="btn w-100 btn-primary-soft mt-3 lift" id="salva" name="salva" onclick="saveINCONTRO();"  <?php echo $disabled_scheda;?> >Salva</button>
 
                     </div>

@@ -126,15 +126,17 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
           <div class="col-6">    
               <p align="right">
               <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>                
-                  <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=&_nuovo=1" class="btn btn-primary-soft btn-xs" onclick="xxxxx('0')"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</a>
+                  <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=&_nuovo=1" class="btn btn-primary-soft btn-xs"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</a>
               <?php else: ?>
                   <!-- HTML code to display if condition is false -->
-                  <a href="#" class="btn btn-primary" >########</a>
+                  
               <?php endif; ?>                  
                   <!-- <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxx();"><i class="fe fe-list"></i>&nbsp;Esporta in excel</button>
                   <button type="button" class="btn btn-sm btn-primary-soft  btn-xs" onclick="xxxxx();"><i class="fe fe-search"></i>&nbsp;Ricerca</button> -->
               </p>
           </div>  
+
+
         </div> 
       </div>
       
@@ -148,25 +150,33 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
 
         <div class="list-group">
 
+        <?php if (empty($gelenco_incontri)): ?>   
+          NON CI SONO RIUNIONI
+        <?php else: ?>
 
-        <?php foreach ($gelenco_incontri as $incontro) { ?>
+            <?php foreach ($gelenco_incontri as $incontro) { ?>
 
-          <!-- PER OGNI GRUPPO DI LAVORO DELLA CLASSE gdlclass  -->
- 
-            <div class="list-group-item list-group-item-action" >
-              <div class="d-flex w-100 justify-content-between">
-                <a href="rebuilding_riunione_view?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class=" " aria-current="true"><h4 class="mb-1"><?php echo $incontro["incontro_titolo"]  ; ?></h4></a>
-                <small><?php echo ( new DateTime( $incontro["incontro_giorno"]))->format("d-m-Y"); ?></small>
-              </div>
-              <p class="mb-1"><?php echo $incontro["incontro_abstract"]  ; ?></p>
-              <small>
-                <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class="list-group-item list-group-item-action " aria-current="true">Modifica</a>
-              </small>
-            </div>
+              <!-- PER OGNI GRUPPO DI LAVORO DELLA CLASSE gdlclass  -->
+    
+                <div class="list-group-item list-group-item-action" >
+                  <div class="d-flex w-100 justify-content-between">
+                    <a href="rebuilding_riunione_view?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class=" " ><h4 class="mb-1"><?php echo $incontro["incontro_titolo"]  ; ?></h4></a>
+                    <?php echo ( new DateTime( $incontro["incontro_giorno"]))->format("d-m-Y"); ?>
+                  </div>
+                  <p class="mb-1"><?php echo $incontro["incontro_abstract"]  ; ?></p>
+                  <div class="justify-content-md-end d-md-flex">
+                      <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class="btn btn-primary-soft btn-xs " ><i class="fe fe-edit" ></i> Modifica</a>
+                  </div>
+                </div>
+
+                <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" type="button">Button</button>
+            <button class="btn btn-primary" type="button">Button</button> -->
 
 
-        <?php } ?>
+            <?php } ?>
 
+        <?php endif; ?> 
 
         </div>
              

@@ -171,47 +171,80 @@ $disabled_scheda="";
                       </div> 
                     </div>              
                   </div>      
+<hr/>
+                  <fieldset>
+                      <legend>Documenti</legend>
+                  <div class="row">
+                    <div class="col-4"> <label class="form-label" for="fileConvocazione">Convocazione</label>
+                    </div>
+                    <div class="col-6">
+                      <?php if (empty($incontroDAO->incontro_file_agenda)):   ?>     
+                        ** non disponibile **  
+                      <?php else: ?>               
+                        <a class="btn btn-primary-soft btn-xs small w-60" href="<?php echo  $url_incontro_file_agenda ; ?>"   ><i class="bi bi-download"></i> <?php echo  $incontroDAO->incontro_file_agenda ; ?></a>
+                      <?php endif; ?> 
+                    </div>
+                  </div>
+                  <hr/>
+                  <div class="row mt-3">
 
+                      <?php if (empty($incontroDAO->incontro_file_video)):   ?>    
+                        <div class="col-4"><label class="form-label" for="fileVideoRiunione">Registrazione</label>
+                        </div>
+                        <div class="col-6">                         
+                            ** non disponibile **  
+                        </div>
+                      <?php else: ?>    
+                        <div class="col-4"><label class="form-label" for="fileVideoRiunione">Registrazione &nbsp;</label>
+                        <video controls width="640" style="border: 2px solid blue;padding: 5px;">
+                              <source src="/stream.php?video=<?php echo $url_incontro_file_video ; ?>" type="video/mp4" />
+                              Your browser does not support the video tag.
+                        </video>                      
+                        </div>
+                      <?php endif; ?> 
+                  </div>
+                  <hr/>
+
+                  <div class="row mt-3">
+                    <div class="col-4"> <label class="form-label" for="fileVerbale">Resoconto</label>
+                    </div>
+                    <div class="col-6">
+                      <?php if (empty($incontroDAO->incontro_file_verbale)):   ?>     
+                         ** non disponibile **  
+                      <?php else: ?>  
+                        <a class="btn btn-primary-soft btn-xs small w-60" href="<?php echo $url_incontro_file_verbale; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                      <?php endif; ?>   
+                    </div>
+                  </div>
+                  <hr/>
 
                   <div class="row">
-                    <div class="col"> <label class="form-label" for="fileConvocazione">Convocazione</label>
+                    <div class="col-4"> <label class="form-label" for="fileVerbale">Trascrizione</label>
                     </div>
-                    <div class="col"><a href="<?php echo  $url_incontro_file_agenda ; ?>"   ><i class="bi bi-download"></i> <?php echo  $incontroDAO->incontro_file_agenda ; ?></a>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col"><label class="form-label" for="fileVideoRiunione">Registrazione</label>
-                    </div>
-                    <div class="col"> <a href="<?php echo $url_incontro_file_video ; ?>"  ><i class="bi bi-play-fill"></i> <?php echo $incontroDAO->incontro_file_video ; ?></a>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <video controls width="640" height="360">
-                        <source src="/stream.php?video=<?php echo $url_incontro_file_video ; ?>" type="video/mp4" />
-                        Your browser does not support the video tag.
-                  </video>
-                  </div>
-                  <div class="row">
-                    <div class="col"> <label class="form-label" for="fileVerbale">Resoconto</label>
-                    </div>
-                    <div class="col"><a href="<?php echo $url_incontro_file_verbale; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_verbale; ?></a>
+                    <div class="col-6">
+                      <?php if (empty($incontroDAO->incontro_file_trascrizione)):   ?>     
+                         ** non disponibile **  
+                      <?php else: ?>  
+                        <a class="btn btn-primary-soft btn-xs small w-60" href="<?php echo $url_incontro_file_trascrizione; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_trascrizione; ?></a>
+                      <?php endif; ?>  
                     </div>
                   </div>
+                  <hr/>
 
                   <div class="row">
-                    <div class="col"> <label class="form-label" for="fileVerbale">Trascrizione</label>
+                    <div class="col-4"> <label class="form-label" for="fileVerbale">Ulteriore Documentazione</label>
                     </div>
-                    <div class="col"><a href="<?php echo $url_incontro_file_trascrizione; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_trascrizione; ?></a>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col"> <label class="form-label" for="fileVerbale">Ulteriore Documentazione</label>
-                    </div>
-                    <div class="col"><a href="<?php echo $url_incontro_file_altro_materiale; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_altro_materiale; ?></a>
+                    <div class="col-6">
+                      <?php if (empty($incontroDAO->incontro_file_altro_materiale)):   ?>     
+                         ** non disponibile **  
+                      <?php else: ?>  
+                        <a class="btn btn-primary-soft btn-xs small w-60" href="<?php echo $url_incontro_file_altro_materiale; ?>"   ><i class="bi bi-download"></i> <?php echo $incontroDAO->incontro_file_altro_materiale; ?></a>
+                      <?php endif; ?>  
                     </div>
                   </div>                  
 
+                  </fieldset>
+                  <hr/>
 
                   <?php if (!getPARAMETRO("_nuovo")):   ?>
                   <?php endif; ?>
