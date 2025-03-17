@@ -234,7 +234,7 @@ $disabled_scheda="";
   	 <?php echo getREBUILDINGHEAD(true); ?>
 
      <link rel="stylesheet" href="../librerie/css/bootstrap-select.css">
-
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
      <style>
     textarea {
@@ -354,7 +354,11 @@ $disabled_scheda="";
                           name="fileConvocazione_text" 
                           class="form-control form-control-text form-control-xs " 
                           disabled aria-disabled="true"
-                          value="<?php echo $incontroDAO->incontro_file_agenda ?>">          
+                          value="<?php echo $incontroDAO->incontro_file_agenda ?>">  
+                      
+                    </div>
+                    <div class="col-1 col-md-1">
+                      <a class="btn btn-danger btn-xs" href="#" onclick="remove_allegato(<?php echo $pidincontro ?>, 'incontro_file_agenda' );" ><i class="bi bi-trash"></i></a>        
                     </div>
                   </div>      
 
@@ -464,9 +468,36 @@ $disabled_scheda="";
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="../librerie/js/bootstrap-select.js"></script>
 
+
+    
+
   </body>
 
   <script>
+
+
+function remove_allegato( idriunione, tipoallegato ) {
+  var page="rebuilding_action.php";
+    var params="_action=deleteAllegatoRiunione&_idriunione="+idriunione+"&_tipoallegato="+tipoallegato;
+    $.ajax({
+      type: "POST",
+      url: page,
+      data: params, 
+      dataType: "html",
+      success: function(result)
+      {
+                
+        // window.location.reload();
+        // window.location.href = window.location.href;
+        window.location.href = window.location.href.split('#')[0] + "?idgl<?php echo $pfk_idrebuilding_gld ?>&idl=<?php echo $pidincontro ?>";
+      },
+      error: function()
+      {
+        alert("ERRORE")
+        console.log("Chiamata fallita, si prega di riprovare...");
+      }
+    });  
+}
 
 function saveINCONTRO()
 {

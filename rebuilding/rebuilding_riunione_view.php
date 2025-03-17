@@ -182,6 +182,7 @@ $disabled_scheda="";
                         ** non disponibile **  
                       <?php else: ?>               
                         <a class="btn btn-primary-soft btn-xs small w-60" href="<?php echo  $url_incontro_file_agenda ; ?>"   ><i class="bi bi-download"></i> <?php echo  $incontroDAO->incontro_file_agenda ; ?></a>
+                        
                       <?php endif; ?> 
                     </div>
                   </div>

@@ -20,6 +20,28 @@ $paction=getPARAMETRO("_action");
 switch ($paction) 
 {
 
+	case 'deleteAllegatoRiunione': 
+		$pidriunione=getPARAMETRO("_idriunione");
+		$ptipoAllegato=getPARAMETRO("_tipoallegato");
+		//
+		$sSQL="UPDATE rebuilding_gruppi_di_lavoro_incontri SET $ptipoAllegato=NULL WHERE idincontro=$pidriunione";
+		
+		$result=$db->query($sSQL);
+		//
+		// if ($ptipoallegato=='incontro_file_agenda') {
+
+		// } else if ($ptipoallegato=='incontro_file_verbale') {
+
+		// } else if ($ptipoallegato=='incontro_file_video') {
+
+		// } else if ($ptipoallegato=='incontro_file_trascrizione') {
+
+		// } else if ($ptipoallegato=='incontro_file_altro_materiale') {
+
+		// } 
+		echo "1";
+		break;
+
 	case 'rlogin':
 
 		$pusername=getPARAMETRO("_u");
@@ -91,7 +113,7 @@ switch ($paction)
 				'$panagrafica_email'
 			)";
 
-			$result=$db->query($insert);
+			
 
 			$aRESPONSE["status"]=1;
 		}
