@@ -133,6 +133,7 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
               <p align="right">
               <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>                
                   <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=&_nuovo=1" class="btn btn-primary-soft btn-xs"><i class="fe fe-plus"></i>&nbsp;Nuova riunione</a>
+                  <a href="rebuilding_riunioni_security?igl=<?php echo $gidr; ?>" class="btn btn-primary-soft btn-xs"><i class="fe fe-shield"></i>&nbsp;Security</a>
               <?php else: ?>
                   <!-- HTML code to display if condition is false -->
                   

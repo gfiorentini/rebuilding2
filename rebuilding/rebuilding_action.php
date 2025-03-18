@@ -20,6 +20,137 @@ $paction=getPARAMETRO("_action");
 switch ($paction) 
 {
 
+	case 'gruppiDiLavoroSetSecurity':
+		$pigl=getPARAMETRO("igl");
+		$pcf=getPARAMETRO("cf");
+		$pcanView = getPARAMETRO("canView");
+		$pcanEdit = getPARAMETRO("canEdit");
+		//
+		$sWHERE = "WHERE fk_idrebuilding_gld=$pigl AND codice_fiscale='$pcf'";
+		$sSQL="SELECT COUNT(*) AS numero FROM rebuilding_gruppi_di_lavoro_auth $sWHERE ";
+		$records_count=$db->getVALUE($sSQL,'numero');  
+		//
+		if (($pcanView=="0") || ($pcanView=="1")) {
+			$sUpdate = " canView=$pcanView ";
+			$sInsertField = ' canView , canEdit ';
+			$sInsertValue = " $pcanView , 0 ";
+		} 
+		if (($pcanEdit=="0") || ($pcanEdit=="1")) {
+			$sUpdate = " canEdit=$pcanEdit ";
+			$sInsertField = ' canView, canEdit ';
+			$sInsertValue = " 0, $pcanEdit ";
+		} 
+		
+		//
+		if ($records_count >0) {
+			$sSQL = "UPDATE rebuilding_gruppi_di_lavoro_auth SET $sUpdate $sWHERE ";
+		} else {
+			$sSQL = "INSERT INTO rebuilding_gruppi_di_lavoro_auth (fk_idrebuilding_gld, codice_fiscale, $sInsertField ) VALUES($pigl, '$pcf', $sInsertValue );";
+		}
+		$result=$db->query($sSQL);
+
+		echo $result;
+		break;
+
+	// popola la pagina di edit security per i gruppi di lavoro.
+	case 'loadoperatoriPerGruppoDiLavoro':
+		$page=getPARAMETRO("page");
+		$pquery=getPARAMETRO("query");
+		$pigl=getPARAMETRO("igl");
+
+		$sWhere="";
+		if(!empty($pquery))
+		{
+			$pquery=stripslashes($pquery);
+
+			$aQUERY=json_decode($pquery,true);
+			if(!empty($aQUERY["operatore_nominativo"]))
+			{
+				$param=$aQUERY["operatore_nominativo"];
+    			$param=$db->escape_text($param);
+
+				if(!empty($sWhere))
+					$sWhere.=" AND ";
+
+				$sWhere.=" ( (CONCAT_WS(' ',dara_operatore.operatore_cognome,dara_operatore.operatore_nome) like '%$param%') ";
+				$sWhere.=" OR ( dara_operatore.operatore_codicefiscale like '%$param%' ) )";
+			}
+		}
+
+		if(!empty($sWhere))
+			$sWhere=" WHERE ".$sWhere;
+
+		$sSQL="SELECT COUNT(*) AS numero FROM dara_operatore ".$sWhere;
+		$records_count=$db->getVALUE($sSQL,'numero');
+		if(empty($records_count))
+			$records_count=0;
+		
+		$record_each_page=10;
+
+		if(ceil($records_count/$record_each_page)<$page)	//Se la nuova ricerca restituisce meno pagine di risultati rispetto alla pagina in cui si è attualmente
+			$page=1;
+			
+		$paging=new Pagination($records_count, $record_each_page, $page, 10);
+
+		$sLimit=$paging->get_sql();
+		$counter=$paging->get_counter();
+
+		$sSQL="select dara_operatore.*, IFNULL(canView, 0) userCanView , IFNULL(canEdit, 0 ) userCanEdit  from dara_operatore 
+		left join 
+		( select   * from rebuilding_gruppi_di_lavoro_auth
+			where rebuilding_gruppi_di_lavoro_auth.fk_idrebuilding_gld = $pigl
+		) b on operatore_codicefiscale = b.codice_fiscale".$sWhere." ORDER BY operatore_cognome ASC, operatore_nome ASC ".$sLimit;  ;
+
+		// $sSQL="SELECT * FROM dara_operatore ".$sWhere." ORDER BY operatore_cognome ASC, operatore_nome ASC ".$sLimit;
+
+    	$aOPERATORI=$db->select($sSQL);
+
+    	$data=array();
+    	
+    	if (@is_array($aOPERATORI))
+		{
+        	foreach ($aOPERATORI as $key => $aDATI) 
+        	{
+                $iddara_operatore=$aDATI["iddara_operatore"];
+                $operatore_cognome=$aDATI["operatore_cognome"];
+                $operatore_nome=$aDATI["operatore_nome"];
+                $operatore_codicefiscale=$aDATI["operatore_codicefiscale"];
+                $operatore_email=$aDATI["operatore_email"];
+                $operatore_flagabilitato=$aDATI["operatore_flagabilitato"];
+                $userCanView=$aDATI["userCanView"];
+                $userCanEdit=$aDATI["userCanEdit"];
+
+
+                $data[] = array(
+										'iddara_operatore'=>$iddara_operatore,
+										'counter'=>$counter,
+										'operatore_cognome'=>$operatore_cognome,
+										'operatore_nome'=>$operatore_nome,
+										'operatore_codicefiscale'=>$operatore_codicefiscale,
+										'operatore_email'=>$operatore_email,
+										'operatore_flagabilitato'=>$operatore_flagabilitato,
+										'userCanView'=>$userCanView,
+										'userCanEdit'=>$userCanEdit,
+								);
+
+                $counter++;
+    		}
+		}
+
+		$pagination_html=$paging->get_pagination();
+
+		$output = array(
+			'data'				=>	$data,
+			'pagination'		=>	$pagination_html,
+			'total_data'		=>	$records_count
+		);
+
+		echo json_encode($output);
+
+
+		break;
+
+	// cancella logicamente un allegato da una particolare riunione
 	case 'deleteAllegatoRiunione': 
 		$pidriunione=getPARAMETRO("_idriunione");
 		$ptipoAllegato=getPARAMETRO("_tipoallegato");
