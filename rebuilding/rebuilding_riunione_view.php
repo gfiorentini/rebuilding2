@@ -167,14 +167,14 @@ $disabled_scheda="";
                         <label for="form_incontro_titolo">Titolo</label>
                       </div> 
                     </div>  
-
+                    <hr/>
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
                       <textarea id="form_incontro_abstract" rows="5" readonly aria-readonly="true"  name="form_incontro_abstract" class="form-control form-control-flush"  placeholder="Inserire abstract riunione" > <?php echo $incontroDAO->incontro_abstract;?></textarea> 
                         <label for="form_incontro_abstract">Ordine del giorno</label>
                       </div> 
                     </div>  
-
+                    <hr/>
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
                         <input type="date"  readonly aria-readonly="true" id="form_incontro_giorno" name="form_incontro_giorno" class="form-control form-control-flush" required placeholder="Data riunione" value="<?php echo $incontroDAO->incontro_giorno;?>" <?php echo $disabled_scheda;?> >
@@ -182,7 +182,7 @@ $disabled_scheda="";
                       </div> 
                     </div>              
                   </div>      
-<hr/>
+                  <hr/>
                   <fieldset>
                       <legend>Documenti</legend>
                   <div class="row">

@@ -447,7 +447,7 @@ function getDataInArray($data)
                                     $inputRISORSE='<input type="text" id="risorse'.$idente.'" name="risorse'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSEASSEGNATE[$idente],2,",",".").'" readonly >';
                                     $inputLIQUIDATO='<input type="text" id="liquidato'.$idente.'" name="liquidato'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSE_LIQUIDATE[$idente],2,",",".").'" readonly >';
                                     $inputRESTITUITO='<input type="text" id="restituito'.$idente.'" name="restituito'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSE_RESTITUITE[$idente],2,",",".").'" readonly >';
-                                    $inputECONOMIA='<input type="text" id="economia'.$idente.'" name="economia'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSE_RESTITUITE[$idente],2,",",".").'" readonly >';
+                                    $inputECONOMIA='<input type="text" id="economia'.$idente.'" name="economia'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSE_ECONOMIA[$idente],2,",",".").'" readonly >';
                                   //else
                                   //  $inputRISORSE='<input type="text" id="risorse'.$idente.'" name="risorse'.$idente.'" class="form-control" placeholder="0.00" value="'.$aRISORSEASSEGNATE[$idente].'" '.$disabled_scheda.' >';
 
