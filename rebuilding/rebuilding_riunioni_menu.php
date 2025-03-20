@@ -85,12 +85,13 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
 
               <!-- Heading -->
               <h3 class="fw-bold">
-                <a href="rebuilding_riunioni_gdl_lista?gdlclass=conferenzacoord" class="dropdown-item fw-bold text-decoration-none">Conferenza Coordinatori ATS</a>
+                <!-- <a href="rebuilding_riunioni_gdl_lista?gdlclass=conferenzacoord" class="dropdown-item fw-bold text-decoration-none">Conferenza Coordinatori ATS</a> -->
+                <a href="rebuilding_riunioni_list_giornate?igl=22" class="dropdown-item fw-bold text-decoration-none">Conferenza Coordinatori ATS</a>
                
               </h3>
 
               <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0">
+              <p class="text-muted mb-8 mb-lg-0 fs-6">
               Conferenza permanente dei Coordinatori di ATS
               </p>
              
@@ -112,7 +113,7 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
               </h3>
 
               <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0"> Tavolo permanente Enti Gestori  </p>
+              <p class="text-muted mb-8 mb-lg-0 fs-6"> Tavolo permanente Enti Gestori  </p>
           </div>
 
 
@@ -129,7 +130,7 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
               </h3>
 
               <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0">Comitato tecnico a supporto del tavolo 
+              <p class="text-muted mb-8 mb-lg-0 fs-6">Comitato tecnico a supporto del tavolo 
               regionale della rete della protezione e dell’inclusione sociale   </p>
           </div>
  
@@ -148,7 +149,7 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
               </h3>
 
               <!-- Text -->
-              <p class="text-muted mb-8 mb-lg-0">  Gruppi di lavoro tematici </p>
+              <p class="text-muted mb-8 mb-lg-0 fs-6">  Gruppi di lavoro tematici </p>
               
 
 

@@ -96,7 +96,7 @@ if(!empty($authid))
     $mailAddress=$res["response"]["retrieveUserDataReturn"]["mailAddress"];
     $mailAddress=db_string($mailAddress);
 
-    $aDATI=get_data_from_cf($codiceFiscale);
+    $aDATI                                                                                                                                           =get_data_from_cf($codiceFiscale);
 
 
     $nascitaData=$aDATI["data_nascita"];
@@ -209,7 +209,8 @@ if(!empty($authid))
             setcookieAuthServiceAuhtId($authid,'SPID');
     
         //$sPage="https://rebuilding.regione.marche.it/rebuilding/home?_spid=true";
-        $sPage="http://localhost:8082/rebuilding/home?_spid=true";
+        // $sPage="http://localhost:8082/rebuilding/home?_spid=true";
+        $sPage = gf_extract_logged_in_url() . "/rebuilding/home?_spid=true";
     }
 
     if(!empty($sPage))
@@ -221,6 +222,23 @@ if(!empty($authid))
 else
     die("authId non rilevato");
 
+
+
+function gf_extract_logged_in_url  () {
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $port = $_SERVER['SERVER_PORT'];
+    // $uri = $_SERVER['REQUEST_URI'];
+    
+    // Include port only if it's not a default port
+    if (($protocol == 'http' && $port != 80) || ($protocol == 'https' && $port != 443)) {
+        $fullUrl = $protocol . '://' . $host ; // . ':' . $port ;
+    } else {
+        $fullUrl = $protocol . '://' . $host ;
+    }
+    //
+    return $fullUrl ;    
+}
 
 function get_data_from_cf($fldcodice_fiscale)
 {

@@ -70,6 +70,14 @@ button:disabled, input:disabled, select:disabled, a:disabled {
   color: #a0a0a0; /* Muted text color */
 }
 
+.dropdown-item.disabled, .dropdown-item:disabled {
+    color: #dadee5;
+}
+
+
+.text-muted {
+    color: #dadee5 !important;
+}
 
 
 </style>
@@ -129,6 +137,9 @@ button:disabled, input:disabled, select:disabled, a:disabled {
               <h3 class="fw-bold">
                 <a href="rebuilding_riunioni_list_giornate?igl=<?php echo $rm_gruppo["idrebuilding_gld"]; ?>" class="disabled dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
               </h3>
+              <p class="text-muted mb-8 fs-6">
+              <?php echo $rm_gruppo["gdl_testo"]; ?>
+              </p>
 <?php endif; ?>
 
 <?php if ($rm_gruppo["userCanView"] == 1):  ?>
@@ -136,13 +147,13 @@ button:disabled, input:disabled, select:disabled, a:disabled {
               <h3 class="fw-bold">
                 <a href="rebuilding_riunioni_list_giornate?igl=<?php echo $rm_gruppo["idrebuilding_gld"]; ?>" class="dropdown-item fw-bold text-decoration-none"><?php echo $rm_gruppo["gdl_titolo"]; ?></a>
               </h3>
-<?php endif; ?>
               <!-- Text -->
-              <p class="text-muted mb-8">
+              <p class="mb-8 fs-6">
               <?php echo $rm_gruppo["gdl_testo"]; ?>
               </p>
+<?php endif; ?>
 
-          </div>
+      </div>
 
         <?php } ?>
 

@@ -15,6 +15,22 @@ require_once("../librerie/class.pagination.php");
 
 global $db;
 
+function gf_extract_backurl_in_url  () {
+	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+	$host = $_SERVER['HTTP_HOST'];		// contiene anche la porta
+	$port = $_SERVER['SERVER_PORT'];
+	// $uri = $_SERVER['REQUEST_URI'];
+	
+	// Include port only if it's not a default port
+	if (($protocol == 'http' && $port != 80) || ($protocol == 'https' && $port != 443)) {
+			$fullUrl = $protocol . '://' . $host ; // . ':' . $port ;
+	} else {
+			$fullUrl = $protocol . '://' . $host ;
+	}
+	//
+	return $fullUrl ;    
+}
+
 $paction=getPARAMETRO("_action");
 
 switch ($paction) 
@@ -452,12 +468,14 @@ switch ($paction)
 				{
 					
 					$urlSpid="https://spid.comune-online.it/AuthServiceSPID/auth.jsp";
+
+					$backUrl=gf_extract_backurl_in_url() . "/rebuilding/spid_auth_rebuilding.php?params={authId}";
 					
-					if($_SERVER["HTTP_HOST"]=="rebuilding.regione.marche.it")
-						$backUrl="https://rebuilding.regione.marche.it/rebuilding/spid_auth_rebuilding.php?params={authId}";
-					else
-						$backUrl="http://localhost:8082/rebuilding/spid_auth_rebuilding.php?params={authId}";
-						// $backUrl="https://rebuilding.sicare.it/rebuilding/spid_auth_rebuilding.php?params={authId}";
+					// if($_SERVER["HTTP_HOST"]=="rebuilding.regione.marche.it")
+					// 	$backUrl="https://rebuilding.regione.marche.it/rebuilding/spid_auth_rebuilding.php?params={authId}";
+					// else
+					// 	$backUrl="http://localhost:8082/rebuilding/spid_auth_rebuilding.php?params={authId}";
+					// $backUrl="https://rebuilding.sicare.it/rebuilding/spid_auth_rebuilding.php?params={authId}";
 
 					// echo $backUrl ;
 
@@ -682,7 +700,8 @@ switch ($paction)
 		$plibrerie=getPARAMETRO("librerie");
 
 		// $backUrl="https://rebuilding.regione.marche.it/rebuilding/login";
-		$backUrl="http://localhost:8082/rebuilding/login";
+		// $backUrl="http://localhost:8082/rebuilding/login";
+		$backUrl=gf_extract_backurl_in_url() . "/rebuilding/login";
 
 		$data=date("Y-m-d");
 		$ora=date("H:i:s");
@@ -716,6 +735,7 @@ switch ($paction)
 					//print_r_formatted($result);
 					if(!empty($result["response"]["singleSignOutReturn"]))
 					{
+						// GF
 						// setcookie('authservice_authidSPID', null , time()+18000 , "/", domain: $_SERVER['HTTP_HOST'], secure: false, httponly: true);
 						setcookie('authservice_authidSPID', null , time()+18000 , "/",  secure: false, httponly: true);
 						$urlRedirect=$result["response"]["singleSignOutReturn"];
