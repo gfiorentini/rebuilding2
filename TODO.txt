@@ -26,6 +26,19 @@ NOTE INSTALLAZIONE
 * copiare images/librerire/rebuilding
 
 
+sudo systemctl restart php-fpm
+sudo chcon -R -h -t httpd_sys_rw_content_t /var/www/html/riunioni/
+sudo chmod -R 777 /var/www/html/riunioni/
+sudo chown -R apache:apache ./riunioni/
+sudo systemctl stop httpd
+sudo systemctl start httpd
+
+vi::
+/search 
+yyp duplica linea
+
+
+
 
 
           <div class="col-12 col-md-6 col-lg-4 text-center aos-init aos-animate" data-aos="fade-up">
