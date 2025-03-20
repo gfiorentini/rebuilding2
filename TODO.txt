@@ -1,11 +1,29 @@
 
 Gestione statistiche di accesso ai gruppi di lavoro e alle relative riunioni
 
-Gestione inserimento di una nuova riunione
+[x] Gestione inserimento di una nuova riunione
 
-Gestione visualizzazione di una nuova riunione con i relativi allegati
+[x] Gestione visualizzazione di una nuova riunione con i relativi allegati
 
-Gestione streaming video
+[x] Gestione streaming video
+
+
+NOTE INSTALLAZIONE
+- fare backup attuale
+- applicare script db + importare struttura dei gruppi di lavoro
+- riabilitare invio email agli ambiti
+- modificare l'autenticazione SPID per riportare alla situazione
+- creare la cartella "riunioni" sul server e verificare se necessario dari i diritti o lanciare script di sicurezza
+    - ricordarsi di portare il .htaccess
+- copiare le eventuali iconografie
+
+- avviare i test 
+- provare installazione con ambiente di test   rebuilding_test ... 
+- 
+
+* documenti non è da copiare
+* .htaccess da sostitiuire
+* copiare images/librerire/rebuilding
 
 
 

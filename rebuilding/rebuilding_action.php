@@ -710,8 +710,9 @@ switch ($paction)
 			
 		//$db->query("INSERT INTO log_utente (ip,data,ora,chiave_front,idutente,attivita) VALUES ($ip,$data,$ora,'$chiave_front','$fldidgen_utente','logout')");
 
-		// setcookie('iccsuser_front', null , time()+18000 , "/", $_SERVER['HTTP_HOST'], false, true);
-		setcookie('iccsuser_front', null , time()+18000 , "/",false, true);
+		// GF
+		setcookie('iccsuser_front', null , time()+18000 , "/", $_SERVER['HTTP_HOST'], false, true);
+		// setcookie('iccsuser_front', null , time()+18000 , "/",false, true);
 		session_destroy();
 		session_unset();
 		
@@ -736,8 +737,8 @@ switch ($paction)
 					if(!empty($result["response"]["singleSignOutReturn"]))
 					{
 						// GF
-						// setcookie('authservice_authidSPID', null , time()+18000 , "/", domain: $_SERVER['HTTP_HOST'], secure: false, httponly: true);
-						setcookie('authservice_authidSPID', null , time()+18000 , "/",  secure: false, httponly: true);
+						setcookie('authservice_authidSPID', null , time()+18000 , "/", domain: $_SERVER['HTTP_HOST'], secure: false, httponly: true);
+						// setcookie('authservice_authidSPID', null , time()+18000 , "/",  secure: false, httponly: true);
 						$urlRedirect=$result["response"]["singleSignOutReturn"];
 					}
 				}
@@ -757,9 +758,9 @@ switch ($paction)
 					//print_r_formatted($result);
 					if(!empty($result["response"]["singleSignOutReturn"]))
 					{
-						// setcookie('authservice_authidCNS', null , time()+18000 , "/", $_SERVER['HTTP_HOST'], false, true);
-						setcookie('authservice_authidCNS', null , time()+18000 
-						, "/", false, true);
+						// GF
+						setcookie('authservice_authidCNS', null , time()+18000 , "/", $_SERVER['HTTP_HOST'], false, true);
+						// setcookie('authservice_authidCNS', null , time()+18000 , "/", false, true);
 						$urlRedirect=$result["response"]["singleSignOutReturn"];
 					}
 				}

@@ -1,0 +1,1000 @@
+   24   cd /var/www/html
+   25  ls -al
+   26  cd rebuilding
+   27  ls -al
+   28  h
+   29  history
+   30  sudo tail /var/log/httpd/error_log
+   31  sudo tail /var/log/httpd/access_log
+   32  ls
+   33  ls -al
+   34  history
+   35  php --version
+   36  sudo systemctl status php-fpm$8.1.14
+   37  sudo systemctl status php-fpm8.1.14
+   38  sudo systemctl list
+   39  sudo systemctl --type=service
+   40  sudo systemctl restart  php-fpm
+   41  sudo tail /var/log/httpd/access_log
+   42  sudo tail /var/log/httpd/error_log
+   43  ps aux | egrep '(apache|httpd)'
+   44  namei -l .
+   45  namei -m .
+   46  sudo namei -m .
+   47  ls
+   48  ls -al
+   49  history
+   50  cd /etc/httpd/conf
+   51   sudo vim httpd.conf
+   52  sudo systemctl restart httpd
+   53   sudo vim httpd.conf
+   54  sudo systemctl restart httpd
+   55   sudo vim httpd.conf
+   56  sudo systemctl restart httpd
+   57  sudo tail /var/log/httpd/error_log
+   58  sudo tail /var/log/httpd/access_log
+   59  sudo ls /var/log/php-fpm/
+   60  sudo tail /var/log/php-fpm/error.log
+   61  sudo tail /var/log/php-fpm/www-error.log
+   62  sudo dnf install php-soap
+   63  sudo systemctl restart httpd
+   64  sudo tail /var/log/php-fpm/www-error.log
+   65  wget https://spid.comune-online.it/AuthServiceSPID/services/AuthService?wsdl
+   66  sudo dnf install wget
+   67  wget https://spid.comune-online.it/AuthServiceSPID/services/AuthService?wsdl
+   68  cd
+   69  wget https://spid.comune-online.it/AuthServiceSPID/services/AuthService?wsdl
+   70  whereis php.ini
+   71  cd /etc
+   72  sudo vim php.ini
+   73  cd
+   74  wget https://spid.comune-online.it/AuthServiceSPID/services/AuthService?wsdl
+   75  ping spid.comune-online.it
+   76  sudo ping spid.comune-online.it
+   77  history
+   78  sudo tail /var/log/php-fpm/www-error.log
+   79  ls /tmp/
+   80  cd /etc
+   81  sudo vim php.ini 
+   82  cd /var/www/html
+   83  ls
+   84  sudo vim testsoap.php
+   85  sudo php testsoap.php
+   86  sudo vim testsoap.php
+   87  sudo php testsoap.php
+   88  sudo vim testsoap.php
+   89  sudo php testsoap.php
+   90  cd /var/www/html
+   91  ls
+   92  vim testhttp.php
+   93  cp testsoap.php testhttp.php
+   94  vim testhttp.php
+   95  php testhttp.php 
+   96  vim testhttp.php
+   97  php testhttp.php 
+   98  vim testhttp.php
+   99  php testhttp.php 
+  100  vim testhttp.php
+  101  php testhttp.php 
+  102  sudo php testhttp.php 
+  103  vim testhttp.php
+  104  sudo php testhttp.php 
+  105  vim testhttp.php
+  106  sudo php testhttp.php 
+  107  ls
+  108  ls -al
+  109  more .htaccess 
+  110  cd /etc/httpd/conf
+  111  ls -al
+  112  sudo vim httpd.conf
+  113  history
+  114  sudo systemctl restart httpd
+  115  sudo vim httpd.conf
+  116  sudo systemctl restart httpd
+  117  cd /etc
+  118  sudo vim php.ini 
+  119  getsebool httpd_can_network_connect
+  120  setsebool -P httpd_can_network_connect
+  121  setsebool -P httpd_can_network_connect on
+  122  sudo setsebool -P httpd_can_network_connect on
+  123  getsebool httpd_can_network_connect
+  124  sudo systemctl restart httpd
+  125  getsebool httpd_can_network_connect
+  126  cd /var/www/html
+  127  ls
+  128  sudo vim testsoap.php
+  129  sudo systemctl restart httpd
+  130  sudo vim testsoap.php
+  131  httpd -M | grep ssl_module
+  132  sudo httpd -M | grep ssl_module
+  133  sudo dnf install mod_ssl
+  134  sudo systemctl restart httpd
+  135  sudo httpd -M | grep ssl_module
+  136  sudo systemctl status httpd
+  137  sudo vim /etc/httpd/conf.d/ssl.conf
+  138  openssl
+  139  history
+  140  sudo vim /etc/httpd/conf.d/ssl.conf
+  141  cd /etc/pki/tls/certs/
+  142  ls 
+  143  cd 
+  144  cd WildcardRegioneMarche_2023-2024/
+  145  ls
+  146  ls -al
+  147  rm rmcert.key
+  148  sudo openssl pkcs12 -in wildcard.regione.marche.it_2023-2024.pfx -nocerts -out rmcert.key
+  149  ls
+  150  ls -al
+  151  more rmcert.key
+  152  sudo more rmcert.key
+  153  sudo openssl pkcs12 -in wildcard.regione.marche.it_2023-2024.pfx -nocerts -out rmcert.key
+  154  ls -al
+  155  sudo more rmcert.key
+  156  sudo openssl pkcs12 -in wildcard.regione.marche.it_2023-2024.pfx -clcerts -nokeys -out rmcert.crt
+  157  ls -al
+  158  openssl rsa -in rmcert.key -out rmcert-decrypted.key
+  159  sudo openssl rsa -in rmcert.key -out rmcert-decrypted.key
+  160  ls -al
+  161  sudo more rmcert-decrypted.key 
+  162  sudo more rmcert.key 
+  163  history
+  164  ls -al
+  165  chmod 777 rmcert*
+  166  sudo chmod 777 rmcert*
+  167  ls -al
+  168  sudo cp rmcert* /etc/pki/tls/certs/
+  169  sudo ls /etc/pki/tls/certs
+  170  sudo ls -al /etc/pki/tls/certs
+  171  sudo vim /etc/httpd/conf.d/ssl.conf
+  172  sudo systemctl restart httpd
+  173  sudo systemctl status httpd.service
+  174  sudo ls -al /etc/pki/tls/private/
+  175  sudo ls -al /etc/pki/tls/certs
+  176  sudo vim /etc/httpd/conf.d/ssl.conf
+  177  sudo systemctl restart httpd
+  178  sudo systemctl status httpd.service
+  179  cd /var/www/html
+  180  ls -al
+  181  more .htaccess 
+  182  ls -al ./rebuilding/
+  183  history
+  184  sudo vim /etc/httpd/conf/httpd.conf
+  185  sudo ls -al /etc/httpd/conf/
+  186  sudo ls -al /etc/httpd/
+  187  sudo ls -al /etc/httpd/conf.d/
+  188  sudo vim /etc/httpd/conf.d/ssl.conf 
+  189  sudo vim ./index.html 
+  190  sudo systemctl restart httpd
+  191  date
+  192  timedatectl status
+  193  quit
+  194  exit
+  195  ls -al /etc
+  196  history
+  197  sudo vim /etc/my.cnf
+  198  cd  /etc/my.cnf.d
+  199  ls -al
+  200  sudo vim mariadb-server.cnf
+  201  sudo vim client.cnf
+  202  sudo vim mysql-clients.cnf 
+  203  cd ..
+  204  ls -al | grep my
+  205  sudo vim my.cnf
+  206  ls -al /etc/my.cnf.d/
+  207  cd my.cnf.d
+  208  ls
+  209  m mariadb-server.cnf 
+  210  sudo vim mariadb-server.cnf 
+  211  sudo mysql
+  212  exti
+  213  exit
+  214  cd /var/www/html/rebuilding/
+  215  ls -al
+  216  cd ..
+  217  ls
+  218  ls -al
+  219  ls -al ./documenti/
+  220  ls -al ./documenti/rebuilding/
+  221  ls -al ./documenti/rebuilding/toolkit/
+  222  ls -ald ./documenti/rebuilding/toolkit/
+  223  ls -ald ./documenti/rebuilding/
+  224  ls -ald ./documenti/
+  225  ls -ald ./
+  226  ls -ald ./documenti/
+  227  ls -ald ./documenti/import/
+  228  ls -al ./documenti/import/
+  229  ls -al ./documenti/
+  230  cd ..
+  231  ls -al
+  232  cd ..
+  233  ls
+  234  ls -al
+  235  cd www
+  236  ls -al
+  237  cd html
+  238  ls -al
+  239  more .htaccess
+  240  ls -al
+  241  cd documenti
+  242  ls -al
+  243  cd ..
+  244  chmod 777 ./documenti
+  245  sudo chmod 777 ./documenti
+  246  ls -al
+  247  cd documenti
+  248  ls -al
+  249  chmod 777 ./import/
+  250  sudo chmod 777 ./import/
+  251  ls -alò
+  252  ls -al
+  253  sudo shown root ./import
+  254  sudo chown root ./import
+  255  ls -al
+  256  sudo chgrp root ./import
+  257  ls -al
+  258  cd import
+  259  ls -al
+  260  cd ..
+  261  ls -Z
+  262  cd ..
+  263  ls -Z
+  264  ps aux | egrep '(apache|httpd)
+  265  ps aux | egrep '(apache|httpd)'
+  266  ls -al
+  267  sudo chcon -R -h -t http_sys_rw_content_t /var/www/html/documenti
+  268  sudo chcon -R -h -t httpd_sys_rw_content_t /var/www/html/documenti
+  269  sudo chown -R apache:apache /var/www/html/documenti
+  270  sudo chmod -R 777 /var/www/html/documenti
+  271  a2dissite
+  272  a2ensite
+  273  ls /etc/httpd/
+  274  ls /etc/httpd/conf.d
+  275  cd /etc/httpd/conf.d
+  276  ls
+  277  more php.conf
+  278  ls
+  279  more userdir.conf 
+  280  ls /var/www/html/
+  281  cd /var/www
+  282  ls
+  283  cd ..
+  284  cd etc
+  285  cd httpd/
+  286  ls
+  287  ls conf
+  288  cd conf
+  289  more httpd.conf
+  290  cd /var/
+  291  ls
+  292  cd www
+  293  ls
+  294  cd html
+  295  ls -al
+  296  ls
+  297  cd /etc/httpd/conf.d
+  298  ls
+  299  more phpMyAdmin.conf 
+  300  ls -al
+  301  more ssl.conf
+  302  ls
+  303  cp ssl.com atswebssl.conf
+  304  ls
+  305  ls -al
+  306  sudo cp ssl.conf atswebssl.conf
+  307  ls -al
+  308  vi atswebssl.conf 
+  309  sudo vi atswebssl.conf 
+  310  sudo systemctl restart httpd
+  311  ls
+  312  sudo mv atswebssl.conf _backats.bak
+  313  ls -al
+  314  sudo systemctl restart httpd
+  315  sudo journalctl
+  316  sudo journalctl -xeu httpd.service
+  317  cd /var/www
+  318  cd html
+  319  ls
+  320  cd ..
+  321  mkdir htmlats
+  322  sudo mkdir htmlats
+  323  sudo cp html\info.php .\htmlats\
+  324  pwd
+  325  cp ./html/info.php ./htmlats/
+  326  suod cp ./html/info.php ./htmlats/
+  327  sudo cp ./html/info.php ./htmlats/
+  328  ls htmlats/
+  329  ls -al
+  330  sudo chmod 777 ./htmlats/
+  331  ls -al
+  332  cd /etc/httpd/conf.d
+  333  dir
+  334  sudo vi _backats.bak 
+  335  sudo systemctl restart httpd
+  336  ls /var/www/htmlats/
+  337  if-config
+  338  netaddr 
+  339  ip
+  340  curl ifconfig.me
+  341  ifconfig
+  342  ip a
+  343  exit
+  344  cd /etc/httpd/
+  345  ls
+  346  cd conf.d
+  347  ls
+  348  sudo mv _backats.bak atswebssl.conf
+  349  ls -al
+  350  sudo systemctl restart httpd
+  351  cd /var/www/
+  352  ls
+  353  cd html
+  354  ls -al
+  355  sudo mv info.php _info.php
+  356  exit
+  357  cd /var
+  358  ls
+  359  cd www
+  360  ls
+  361  cd html
+  362  cd ..
+  363  cd htmlats/
+  364  ls
+  365  ls -al
+  366  cd sicare
+  367  ls
+  368  ls -al
+  369  more class.servizi.php
+  370  more ../librerie/class.servizi.php 
+  371  ls -al
+  372  cd ..
+  373  ls
+  374  more imysql.php 
+  375  mariadb
+  376  mysql
+  377  sudo mysql -u root
+  378  SET GLOBAL sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREAT
+  379  mysql --help
+  380  export sql_mode=
+  381  mysql --help
+  382  history
+  383  cd /etc/my.cnf
+  384  more /etc/my.conf
+  385  more /etc/my.cnf
+  386  ls /etc/m*
+  387  more /etc/my.cnf.d
+  388  cd /etc/my.cnf.d
+  389  ls
+  390  ls -al
+  391  cd..
+  392  cd ..
+  393  ls -al myconf*
+  394  ls -al my.cnf
+  395  ls -al my*
+  396  vi my.cnf
+  397  sudo vi my.cnf
+  398  sudo mysql -u root
+  399  sudo vi my.cnf
+  400  sudo mysql -u root
+  401  cd
+  402  ls
+  403  ls -al
+  404  cd ..
+  405  ls
+  406  cd /usr
+  407  ls
+  408  cd local
+  409  kls
+  410  ls
+  411  cd /
+  412  ls
+  413  ls dev
+  414  ls /home
+  415  cd home
+  416  cd rdolce
+  417  sudo cd rdolce/
+  418  ls
+  419  ls -al
+  420  ls rdolce/
+  421  sudo ls rdolce/
+  422  sudo ls regionemarche.intra/
+  423  sudo ls regionemarche.intra/giacomo_fiorentini
+  424  sudo ls -al rdolce
+  425  more rdolce/.bash_history
+  426  sudo more rdolce/.bash_history
+  427  sudo vim /etc/httpd/conf.d/phpMyAdmin.conf
+  428  cd
+  429  sudo mysql -u rm
+  430  sudo mysql --sql-mode=NO_ENGINE_SUBSTITUTION -u ruoo
+  431  sudo mysql --sql_mode=NO_ENGINE_SUBSTITUTION -u ruoo
+  432  cd /etc
+  433  sudo vi my.cnf
+  434  sudo mysql --sql_mode=NO_ENGINE_SUBSTITUTION -u ruoo
+  435  sudo mysql --sql_mode=NO_ENGINE_SUBSTITUTION -u root
+  436  sudo vi my.cnf
+  437  sudo mysql --sql_mode=NO_ENGINE_SUBSTITUTION -u root
+  438  sudo mysql --sql-mode=NO_ENGINE_SUBSTITUTION -u root
+  439  sudo mysql -u root
+  440  sudo vi my.cnf
+  441  exit
+  442  cd /etc
+  443  ls
+  444  cd httpd/
+  445  ls -al
+  446  ls conf
+  447  ls conf.d
+  448  more conf/httpd.conf 
+  449  ls
+  450  cd conf.d
+  451  ls -al
+  452  more atswebssl.conf 
+  453  ls
+  454  cp atswebssl.conf atsweb_backup
+  455  sudo atswebssl.conf atsweb_backup
+  456  sudo cp atswebssl.conf atsweb_backup
+  457  ls -al
+  458  sudo vi ./atswebssl.conf 
+  459  sudo systemctl stop httpd
+  460  sudo systemctl start httpd
+  461  cd ..
+  462  ls -al
+  463  cd logs
+  464  sudo logs
+  465  sudo cd logs
+  466  ls
+  467  ls -al
+  468  sudo cd logs/
+  469  ls -al
+  470  ls
+  471  cd /var/log/httpd/
+  472  ls
+  473  pwd
+  474  cd /var
+  475  cd log
+  476  ls
+  477  cd httpd
+  478  ls -al
+  479  ls httpd
+  480  sudo ls httpd
+  481  sudo more httpd/atsweb_error_log
+  482  sudo ls httpd
+  483  sudo more httpd/error_log
+  484  sudo firewall-cmd --list-all
+  485  cd /etc/httpd/
+  486  ls
+  487  cd conf.d
+  488  ls
+  489  mv atsweb_backup ..
+  490  sudo mv atsweb_backup ..
+  491  ls -al
+  492  more atswebssl.conf 
+  493  ls
+  494  sudo mv atswebssl.conf ../atsweb80.conf
+  495  ls
+  496  cd ..
+  497  ls
+  498  mv atsweb_backup ./conf.d/atswebssl.conf
+  499  sudo mv atsweb_backup ./conf.d/atswebssl.conf
+  500  cd conf.d
+  501  ls
+  502  more atswebssl.conf 
+  503  systmctl httpd stop
+  504  sudo systemctl stop httpd
+  505  sudo systemctl start httpd
+  506  cd ..
+  507  ls -al
+  508  sudo cp atsweb80.conf conf.d/atsweb80.conf
+  509  sudo mv conf.d/atswebssl.conf ../
+  510  ls conf.d
+  511  sudo systemctl stop httpd
+  512  sudo systemctl start httpd
+  513  cd /var/www/
+  514  ls 
+  515  cd htmlats/
+  516  ls
+  517  ls -al
+  518  sudo chcon -R -h httpd_sys_rw_content_t /var/www/htmlats/documenti/
+  519  sudo chcon -R -h http_sys_rw_content_t /var/www/htmlats/documenti/
+  520  sudo chcon -R -h -t httpd_sys_rw_content_t /var/www/htmlats/documenti/
+  521  sudo chown -R apache:apache /var/www/htmlats/documenti/
+  522  sudo chmod -R 777 /var/www/htmlats/documenti/
+  523  ls
+  524  cd /var
+  525  ls
+  526  cd www
+  527  ls
+  528  cd htmlats
+  529  ls
+  530  more privacy.html
+  531  node
+  532  user
+  533  users
+  534  more /etc/passwd
+  535  who
+  536  ps -ax | grep ftp
+  537  cat /etc/passwd
+  538  sudo useradd rdolce
+  539  sudo passwd rdolce
+  540  sudo cat /etc/passwd | grep rdolce
+  541  getent passwd
+  542  sudo useradd gfiorenti
+  543  sudo passwd gfiorenti
+  544  sudo cat /etc/passwd | grep gfiorenti
+  545  sudo chage -l rdolce
+  546  ldaplist passwd rdolce
+  547  sudo groups
+  548  sudo id -gn gfiorenti 
+  549  sudo id -g gfiorenti 
+  550  groups gfiorenti
+  551  sudo usermod -g root gfiorenti
+  552  groups gfiorenti
+  553  sudo id -g gfiorenti 
+  554  sudo id -gn gfiorenti 
+  555  cat /etc/passwd
+  556  sudo mysql -u root
+  557  vi /etc/my.cnf
+  558  sudo vi /etc/my.cnf
+  559  sudo mysql -u root
+  560  ls
+  561  cd w2024-2025_DISTRIB/
+  562  ls
+  563  sudo openssl pkcs12-in wildcard.regione.marche.it_2024-2025.pfx -nocerts out rmcert.key
+  564  sudo openssl pkcs12 -in wildcard.regione.marche.it_2024-2025.pfx -nocerts out rmcert.key
+  565  sudo openssl pkcs12 -in wildcard.regione.marche.it_2024-2025.pfx -nocerts -out rmcert.key
+  566  sudo openssl pkcs12 -in wildcard.regione.marche.it_2024-2025.pfx -clcerts -nokeys -out rmcert.crt
+  567  sudo openssl pkcs12 -in wildcard.regione.marche.it_2024-2025.pfx -nocerts -out rmcert.key
+  568  sudo openssl pkcs12 -provider legacy -in wildcard.regione.marche.it_2024-2025.pfx -clcerts -nokeys -out rmcert.crt
+  569  ls
+  570  sudo openssl pkcs12 -provider legacy -in wildcard.regione.marche.it_2024-2025.pfx -nocerts -out rmcert.key
+  571  ls
+  572  sudo openssl rsa -in rmcert.key -out rmcert-decrypted.key
+  573  ls
+  574  ls -al
+  575  ls /etc/pki/tls/certs
+  576  sudo openssl pkcs12 -provider legacy -in wildcard.regione.marche.it_2024-2025.pfx -nocerts -out rmcert.key
+  577  sudo vim /etc/httpd/conf.d/ssl.conf
+  578  sudo openssl pkcs12 -in wildcard.regione.marche.it_2024-2025.pfx -nocerts -out rmcert.key
+  579  openssl --version
+  580  openssl -version
+  581  openssl -v
+  582  openssl help
+  583  openssl version
+  584  sudo openssl pkcs12 -provider legacy -in wildcard.regione.marche.it_2024-2025.pfx -nocerts -out rmcert.key
+  585  ls -al
+  586  sudo openssl rsa -in rmcert.key -out rmcert-decrypted.key
+  587  ls -AL
+  588  ls -al
+  589  chmod  777 rmcer*
+  590  sudo chmod  777 rmcer*
+  591  ls -al
+  592  sudo cp rmcert* /etc/pki/tls/certs
+  593  ls -al /etc/pki/tls/certs
+  594  sudo systemctl stop httpd
+  595  sudo systemctl start httpd
+  596  sudo openssl pkcs12 -provider legacy -in wildcard.regione.marche.it_2024-2025.pfx -nodes -out rmcert.pem
+  597  ls -al
+  598  sudo openssl pkcs12 -in wildcard.regione.marche.it_2023-2024.pfx -nocerts -out rmcert.key
+  599  sudo openssl pkcs12 -in wildcard.regione.marche.it_2023-2024.pfx -clcerts -nokeys -out rmcert.crt
+  600  sudo openssl rsa -in rmcert.key -out rmcert-decrypted.key
+  601  ls
+  602  ls -al
+  603  openssl version
+  604  exit
+  605  history
+  606  cd /srv
+  607  ls
+  608  cd /var
+  609  ls
+  610  cd www
+  611  ls
+  612  cd html
+  613  ls
+  614  cd rebuilding/
+  615  ls
+  616  ls -al
+  617  cd ..
+  618  ls -al
+  619  cd documenti
+  620  ls
+  621  ls -al
+  622  cd rebuilding/
+  623  ls -al
+  624  cd toolkit
+  625  ls -al
+  626  ls -al | grep 22
+  627  time
+  628  date
+  629  ls -alt
+  630  ls -al
+  631  cd ..
+  632  ls
+  633  cd .
+  634  ls -al
+  635  cd ..
+  636  ls -al
+  637  cd ..
+  638  ls -al
+  639  cd /etc
+  640  ls php*
+  641  sudo vi php.ini
+  642  history
+  643  sudo systemctl stop httpd
+  644  sudo systemctl start httpd
+  645  cd /var/ww
+  646  cd /var
+  647  ls
+  648  cd www
+  649  ls
+  650  cd html
+  651  cd documenti/
+  652  cd rebuilding/
+  653  dir
+  654  cd toolkit/
+  655  ls -al
+  656  ls -alt 
+  657  cd /etc
+  658  sudo vi php.ini
+  659  where php.ini
+  660  whereis php.ini
+  661  cd php.d
+  662  ls -al
+  663  find / -type f -exec grep -H 'upload_max_size' {} \;
+  664  sudo find ./ -type f -exec grep -H 'upload_max_size' {} \;
+  665  cd ..
+  666  sudo find ./ -type f -exec grep -H 'upload_max_size' {} \;
+  667  cd /var/www
+  668  sudo find ./ -type f -exec grep -H 'upload_max_size' {} \;
+  669  cd /etc
+  670  sudo 
+  671  sudo .
+  672  su
+  673  sudo
+  674  sudo vi php.ini
+  675  history
+  676  sudo systemctl stop httpd
+  677  sudo systemctl start httpd
+  678  sudo systemctl stop httpd
+  679  sudo systemctl start httpd
+  680  whereis httpd.conf
+  681  cd /etc/httpd/
+  682  ls -al
+  683  cd conf
+  684  ls -al
+  685  sudo vi httpd.conf
+  686  sudo -u
+  687  cd /
+  688  ls
+  689  cd /etc
+  690  ls -al php*
+  691  vi www.conf
+  692  cd php.d
+  693  cd php-fpm.d
+  694  ls -al
+  695  cd ..
+  696  more php-fpm.conf
+  697  cd php-fpm.d
+  698  ls -al
+  699  more www.conf
+  700  cat www.conf | grep max
+  701  cd .
+  702  ls
+  703  cd ..
+  704  ls
+  705  more php.fpm.conf
+  706  ls
+  707  more php-fpm.conf
+  708  cd ..
+  709  cd etc
+  710  sudo -u giacomo_fiorentini@regionemarche.intra
+  711  sudo vi php.ini
+  712  cd /var/www
+  713  ls
+  714  cd html
+  715  ls
+  716  php -i | grep php.ini
+  717  cd /etc
+  718  mdfind
+  719  ps -ax | grep php
+  720  service
+  721  service --status-all
+  722  sudo service --status-all
+  723  systemctl
+  724  systemctl | grep php
+  725  sudo systemctl restart php-fpm
+  726  exit
+  727  ls
+  728  cd /var/
+  729  ls
+  730  cd www
+  731  ls
+  732  cd html
+  733  ls -al
+  734  cd librerie
+  735  ls
+  736  cd mail
+  737  ls
+  738  vi lib.mail.php
+  739  cd ..
+  740  cd rebuilding/
+  741  vi rebuilding_notifica.php
+  742  sudo vi rebuilding_notifica.php
+  743  history
+  744  sudo systemctl stop httpd
+  745  sudo systemctl start httpd
+  746  whereis httpd
+  747  cd /var
+  748  ls
+  749  cd www
+  750  ls
+  751  cd html
+  752  ls
+  753  cd ..
+  754  cd rebui
+  755  cd html
+  756  ls
+  757  cd rebuilding/
+  758  ls -al
+  759  sudo chmod 777 rebuilding_notifica.php
+  760  ls -al
+  761  cd ..
+  762  cd librerie/
+  763  cd mail
+  764  ls -al
+  765  cd ..
+  766  ls
+  767  cd ..
+  768  ls
+  769  cd ..
+  770  ls
+  771  cd log
+  772  ls
+  773  more lastlog 
+  774  ls -al
+  775  cd httpd
+  776  sudo cd httpd
+  777  ls -al
+  778  sudo cd httpd
+  779  ls
+  780  cd httpd
+  781  sudo
+  782  su
+  783  su -
+  784  ls httpd
+  785  sudo ls httpd
+  786  sudo more httpd/error_log
+  787  sudo more httpd/access_log
+  788  php --info
+  789  php --info | grep error
+  790  history
+  791  sudo vi /etc/php-fpm.d/www.conf 
+  792   sudo systemctl restart php-fpm
+  793   sudo systemctl restart httpd
+  794  ls
+  795  sudo ls httpd
+  796  sudo ls -al httpd
+  797  sudo more httpd/error_log
+  798  cd /var/www
+  799  ls
+  800  cd html
+  801  cd rebui
+  802  cd rebuilding/
+  803  ls -al
+  804  sudo vi rebuilding_notifica.php
+  805  cd ..
+  806  cd librerie/mail
+  807  ls -al
+  808  sudo vi lib.mail.php
+  809  php -i | grep sendmail
+  810  ls /var/log/php-fpm/
+  811  sudo ls /var/log/php-fpm/
+  812  sudo ls -al /var/log/php-fpm/
+  813  sudo more /var/log/php-fpm/error.log
+  814  sudo more /var/log/php-fpm/www-error.log
+  815  sudo tail /var/log/php-fpm/www-error.log
+  816  cd ..
+  817  cd rebuilding
+  818  ls
+  819  cd ..
+  820  cd rebuilding
+  821  sudo vi rebuilding_notifiche.php
+  822  more ../librerie/config.ini 
+  823  cd ..
+  824  cd librerie/
+  825  cd mail
+  826  ls
+  827  sudo vi lib.mail.php 
+  828  cd /var
+  829  ls
+  830  cd www
+  831  ls
+  832  cd htmlats
+  833  ls
+  834  cd sicare
+  835  ls
+  836  sudo vi sicare_timesheet_monitoraggio_dettaglio.php 
+  837  ls
+  838  cd /srv
+  839  ls
+  840  cd /var
+  841  ls
+  842  cd www
+  843  ls
+  844  cd html
+  845  pwf
+  846  pwd
+  847  ls
+  848  cd rebuilding/
+  849  ls
+  850  cp rebuilding_flussofinanziario.php rebuilding_flussofinanziari_backup.php
+  851  ls
+  852  history
+  853  sudo systemctl stop httpd
+  854  sudo systemctl start httpd
+  855  sudo systemctl stop httpd
+  856  sudo systemctl start httpd
+  857  sudo systemctl restart php-fpm
+  858  cp rebuilding_flussofinanziario_backup.php rebuilding_flussofinanziari.php
+  859  cp rebuilding_flussofinanziari_backup.php rebuilding_flussofinanziario.php
+  860  cd /var/log/httpd/
+  861  su
+  862  su -
+  863  history
+  864  sudo cd /var/log/httpd/
+  865  ls -al
+  866  cd /var/log/httpd/
+  867  sudo cd /var/log/httpd/
+  868  pwd
+  869  cd ..
+  870  cd var
+  871  cd log
+  872  cd httpd
+  873  sudo ls httpd
+  874  sudo -al ls httpd
+  875  sudo ls -al httpd
+  876  sudo tail httpd/ssl_access_log
+  877  sudo tail httpd/ssl_request_log
+  878  php --info | grep error 
+  879  cd /var/www/htmlats/sicare
+  880  chmod 777 *
+  881  SUDO chmod 777 *
+  882  sudo chmod 777 *
+  883  cd /etc/httpd/
+  884  ls -al
+  885  more atsweb80.conf
+  886  ls -al
+  887  cd conf
+  888  ls -al
+  889  more httpd.conf
+  890  ls -al
+  891  cd ..
+  892  ls
+  893  cd conf.d
+  894  ls -al
+  895  more ssl.conf
+  896  cd  /etc/pki/tls/certs
+  897  ls -al
+  898  more ssl.conf
+  899  cd /etc/httpd/conf.d
+  900  ls -al
+  901  more ssl.conf
+  902  ls -al
+  903  cd  /etc/pki/tls/certs
+  904  ls -al
+  905  pwd
+  906  cd
+  907  sudo cp  /etc/pki/tls/certs/rmcert* ./
+  908  ls
+  909  more /etc/httpd/conf.d/ssl.conf
+  910  ls -al *.php
+  911  sudo chmod 777 testConnect.php 
+  912  ls -al *.php
+  913  php
+  914  php testConnect.php 
+  915  ip
+  916  ip show
+  917  ip address show
+  918  php testConnect.php 
+  919  sudo php testConnect.php 
+  920  history
+  921  php testConnect.php 
+  922  ip show
+  923  ip 
+  924  ip address show
+  925  telnet 10.101.11.172 3306
+  926  sudo dnf install telnet
+  927  telnet 10.101.11.172 3306
+  928  telnet --help
+  929  telnet 10.101.11.172 3306
+  930  ip address show
+  931  exit
+  932  l
+  933  ls
+  934  vi testConnect.php 
+  935  php testConnect.php 
+  936  vi testConnect.php 
+  937  php testConnect.php 
+  938  vi testConnect.php 
+  939  php testConnect.php 
+  940  vi testConnect.php 
+  941  php testConnect.php 
+  942  exit
+  943  cd /var/www/
+  944  ls
+  945  cd htmlats
+  946  ls
+  947  cd sicare
+  948  ls
+  949  vi sicare_timesheet_scarico_diretto.php 
+  950  df
+  951  df-gb
+  952  df -B
+  953  df 
+  954  df -B=G
+  955  df -B G
+  956  exit
+  957  bash
+  958  exit
+  959  cat /etc/rocky-release
+  960  sudo fdisk -l
+  961  free -h
+  962  exit
+  963  php -v
+  964  mariadb --version
+  965  exit
+  966  ps -ax | grep www
+  967  ps -ax | grep apache
+  968  history
+  969  cd /etc/httpd
+  970  ls
+  971  cd conf
+  972  ls
+  973  more httpd.conf
+  974  cd conf.d
+  975  ls
+  976  cd ..
+  977  ls a-l
+  978  ls -al
+  979  cd conf.d
+  980  ls
+  981  more ssl.conf
+  982  ls -al
+  983  cd WildcartRegioneMarche_2025-2026/
+  984  ls
+  985  sudo openssl pkcs12 -provider legacy -in wildcard.regione.marche.it-2025-2026.pfx -nocerts -out rmcert.key
+  986  ls -al
+  987  sudo openssl pkcs12 -provider legacy -in wildcard.regione.marche.it-2025-2026.pfx -clcerts -nokeys -out rmcert.crt
+  988  ls -al
+  989  sudo openssl -in rmcert.key -out rmcert-decrypted.key
+  990  sudo openssl rsa -in rmcert.key -out rmcert-decrypted.key
+  991  ls -al
+  992  sudo chmod 777 rmcert*
+  993  ls -al
+  994  sudo cp rmcert* /etc/pki/tls/certs
+  995  ls -al /etc/pki/tls/certs
+  996  history
+  997  sudo systemctl httpd stop
+  998  sudo systemctl stop httpd
+  999  sudo systemctl start httpd
+ 1000  history
+ 1001  sudo systemctl stop httpd
+ 1002  sudo systemctl start httpd
+ 1003  cd /opt
+ 1004  ls
+ 1005  cd /var
+ 1006  ls
+ 1007  cd www
+ 1008  ls
+ 1009  cd html
+ 1010  ls -al
+ 1011  cd librerie
+ 1012  ls -al
+ 1013  history
+ 1014  ls -al
+ 1015  cd ..
+ 1016  ls -al
+ 1017  sudo chmod -R 777 ./librerie
+ 1018  sudo chmod -R 777 ./rebuilding
+ 1019  sudo chmod -R 777 ./riunioni
+ 1020  sudo chmod -R 777 ./images
+ 1021  sudo systemctl stop httpd
+ 1022  sudo systemctl start httpd
+ 1023  history > history.txt
