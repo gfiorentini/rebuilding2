@@ -133,10 +133,11 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     , incontro_op_created
     , incontro_dt_last_modified
     , incontro_op_last_modified
+    , incontro_file_partecipanti
     ) VALUES ($pfk_idrebuilding_gld
     , '$pform_incontro_titolo'
     , '$pincontro_abstract'
-    , '$pincontro_giorno', NULL, NULL, NULL, NULL , NULL, current_timestamp(), NULL, current_timestamp(), NULL);";
+    , '$pincontro_giorno', NULL, NULL, NULL, NULL , NULL, current_timestamp(), NULL, current_timestamp(), NULL, NULL);";
     $db->query($sSQL);
     // legge nuovo ID
     $pidincontro=$db->insert_id();
@@ -196,6 +197,16 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
       // ok. 
       $filename = $_FILES["fileAltraDocumentazione"]["name"];
       $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri SET incontro_file_altro_materiale='$filename' WHERE idincontro=$pidincontro;"; 
+      $db->query($sSQL);
+    }
+  }
+
+  if (isset($_FILES['filePartecipanti']) && $_FILES['filePartecipanti']['error'] !== UPLOAD_ERR_NO_FILE) {
+    $targetFile = $riunioneRoot . basename($_FILES["filePartecipanti"]["name"]);
+    if (move_uploaded_file($_FILES["filePartecipanti"]["tmp_name"], $targetFile)) {
+      // ok. 
+      $filename = $_FILES["filePartecipanti"]["name"];
+      $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri SET incontro_file_partecipanti='$filename' WHERE idincontro=$pidincontro;"; 
       $db->query($sSQL);
     }
   }
@@ -361,6 +372,28 @@ $disabled_scheda="";
                       <a class="btn btn-danger btn-xs" href="#" onclick="remove_allegato(<?php echo $pidincontro ?>, 'incontro_file_agenda' );" ><i class="bi bi-trash"></i></a>        
                     </div>
                   </div>      
+
+                  <div class="form-group row">
+                    <div class="col-3 col-md-3">
+                      <label class="form-label form-control-xs" for="filePartecipanti">Partecipanti</label>
+                    </div>
+                    <div class="col-4 col-md-4">
+                      
+                      <input type="file" class="form-control form-control-text  form-control-xs" name="filePartecipanti" id="filePartecipanti" />
+                    </div>    
+                    <div class="col-4 col-md-4">
+                      <input type="text" 
+                          id="filePartecipanti_text" 
+                          name="filePartecipanti_text" 
+                          class="form-control form-control-text form-control-xs " 
+                          disabled aria-disabled="true"
+                          value="<?php echo $incontroDAO->incontro_file_partecipanti ?>">  
+                      
+                    </div>
+                    <div class="col-1 col-md-1">
+                      <a class="btn btn-danger btn-xs" href="#" onclick="remove_allegato(<?php echo $pidincontro ?>, 'incontro_file_partecipanti' );" ><i class="bi bi-trash"></i></a>        
+                    </div>
+                  </div>                        
 
 
                   <div class="form-group row">

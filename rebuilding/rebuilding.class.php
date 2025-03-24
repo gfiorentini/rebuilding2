@@ -21,6 +21,7 @@ class rebuildingGruppiDiLavoroIncontri {
 	public $incontro_op_last_modified;
 	public $incontro_file_trascrizione;
 	public $incontro_file_altro_materiale;
+	public $incontro_file_partecipanti;
 
 
 	public function __construct($idincontro=null) 
@@ -48,6 +49,7 @@ class rebuildingGruppiDiLavoroIncontri {
 				$this->incontro_op_last_modified	=$rows["incontro_op_last_modified"];		
 				$this->incontro_file_trascrizione	=$rows["incontro_file_trascrizione"];									
 				$this->incontro_file_altro_materiale	=$rows["incontro_file_altro_materiale"];												
+				$this->incontro_file_partecipanti	=$rows["incontro_file_partecipanti"];												
 			}	
 		}
 	}

@@ -15,11 +15,11 @@
                 $config = parse_ini_file('config.ini'); 
                 // ALTER USER 'sql_user'@'%' IDENTIFIED BY 'sql_userpass';
                 // GF
-                self::$connection = new mysqli('p:localhost','iccsdba','rbl14072023!','sicare_rebuilding','3306');
+                // self::$connection = new mysqli('p:localhost','iccsdba','rbl14072023!','sicare_rebuilding','3306');
                 // self::$connection = new mysqli('172.20.0.2','sql_user','sql_userpass','rebuilding_dev',port: '3306');
-                // self::$connection = new mysqli('localhost','root','abc24mag','rebuilding_dev',port: '3306');
+                self::$connection = new mysqli('localhost','root','abc24mag','rebuilding_dev',port: '3306');
 
-                //self::$connection = new mysqli('p:'.$config['connecthost'],$config['connectuser'],$config['connectpwd'],$config['connectdbname'],$config['connectport']);
+                // self::$connection = new mysqli('p:'.$config['connecthost'],$config['connectuser'],$config['connectpwd'],$config['connectdbname'],$config['connectport']);
             }
 
             // If connection was not successful, handle the error

@@ -1701,8 +1701,8 @@ function setcookieAuthServiceAuhtId($authid,$tipologia)
 {
 	
 	// GF 
-  $host=$_SERVER['HTTP_HOST'];
-	// $host="localhost";   // dev
+  // $host=$_SERVER['HTTP_HOST'];
+	$host="localhost";   // dev
   
 
 	if(isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on')

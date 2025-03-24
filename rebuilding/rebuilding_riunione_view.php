@@ -88,6 +88,12 @@ if (empty($incontroDAO->incontro_file_altro_materiale)) {
   $url_incontro_file_altro_materiale = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_altro_materiale ; 
 }
 
+if (empty($incontroDAO->incontro_file_partecipanti)) {
+  $url_incontro_file_partecipanti = "#";
+} else {
+  $url_incontro_file_partecipanti = '/riunioni/' . $gcurrentgruppo[0]["gdl_path"] . '/incontro' . $pidincontro . '/' . $incontroDAO->incontro_file_partecipanti ; 
+}
+
 $disabled_scheda="";
 
 
@@ -198,6 +204,19 @@ $disabled_scheda="";
                     </div>
                   </div>
                   <hr/>
+                  <div class="row">
+                    <div class="col-4"> <label class="form-label" for="filePartecipanti">Partecipanti</label>
+                    </div>
+                    <div class="col-6">
+                      <?php if (empty($incontroDAO->incontro_file_partecipanti)):   ?>     
+                        ** non disponibile **  
+                      <?php else: ?>               
+                        <a class="btn btn-primary-soft btn-xs small w-60" href="<?php echo  $url_incontro_file_partecipanti ; ?>"   ><i class="bi bi-download"></i> <?php echo  $incontroDAO->incontro_file_partecipanti ; ?></a>
+                        
+                      <?php endif; ?> 
+                    </div>
+                  </div>
+                  <hr/>                  
                   <div class="row mt-3">
 
                       <?php if (empty($incontroDAO->incontro_file_video)):   ?>    
