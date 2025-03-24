@@ -256,6 +256,8 @@ $disabled_scheda="";
 
      </style>
 
+
+
   </head>
   <body class="bg-light">
 
@@ -508,13 +510,8 @@ $disabled_scheda="";
     
     <!-- Theme JS -->
     <script src="../librerie/assets/js/theme.bundle.js"></script>
-
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="../librerie/js/bootstrap-select.js"></script>
-
-
-    
 
   </body>
 
@@ -551,10 +548,21 @@ function saveINCONTRO()
     {
       $("#liveToast").show()
     }
-    else  
-      $("#INCONTRO_FORM").submit() 
+    else  {
+      $("#INCONTRO_FORM").submit() ;
+      // BootstrapDialog.show({
+      //   title: 'Caricamento in corso...',
+      //   message: '<div class="spinner-border" role="status"><span class="sr-only">.</span></div><p>Attendere prego...</p>',
+      //   closable: false, // Impedisce la chiusura cliccando fuori o premendo Esc
+      //   buttons: [] // Nessun bottone
+      // });
+    }
  
 }
+
+
+
+
 
 function closeMSG()
 {
@@ -575,6 +583,11 @@ function doOnSubmit()
 
 }
 
+
+// $( document ).ready(function() {
+//     console.log( "ready!" );
+    
+// });
 
 </script>
 

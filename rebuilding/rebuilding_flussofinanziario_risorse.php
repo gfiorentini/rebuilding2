@@ -17,6 +17,12 @@ error_reporting(E_ERROR | E_PARSE);
 //error_reporting(-1);
 //ini_set("display_errors",1);
 
+
+function formatEuro($amount){
+  return '€' . number_format($amount, 2, ',', '.');
+}
+
+
 $idoperatore=verificaUSER();
 
 $operatore=new DARAOperatore($idoperatore);
@@ -91,11 +97,11 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     $risorsa_liquidato=$db->escape_text($risorsa_liquidato);
     $risorsa_liquidato = str_replace(",", ".", $risorsa_liquidato);
     
-    $risorsa_restituito=getPARAMETRO("risorse".$idente);
+    $risorsa_restituito=getPARAMETRO("restituito".$idente);
     $risorsa_restituito=$db->escape_text($risorsa_restituito);
     $risorsa_restituito = str_replace(",", ".", $risorsa_restituito);
     
-    $risorsa_economia=getPARAMETRO("risorse".$idente);
+    $risorsa_economia=getPARAMETRO("economia".$idente);
     $risorsa_economia=$db->escape_text($risorsa_economia);
     $risorsa_economia = str_replace(",", ".", $risorsa_economia);    
 
@@ -286,8 +292,20 @@ if(!empty($pidrebuilding_flussofinanziario))
 }
 $disabled_salva='';
 $disabled_scheda="";
+
 if(empty($operatore_flagamministratore) || !empty($operatore_flagdirigente) || (!empty($pidrebuilding_flussofinanziario) && $flussofinanziario->flussofinanziario_rup>0 && $flussofinanziario->flussofinanziario_rup!=$idoperatore))
   $disabled_scheda="disabled";
+
+// GF
+//if(empty($operatore_flagamministratore) || !empty($operatore_flagdirigente) || (!empty($pidrebuilding_flussofinanziario) && $flussofinanziario->flussofinanziario_rup>0 && $flussofinanziario->flussofinanziario_rup!=$idoperatore))
+// Permettiamo agli amministratore di editare i dati per comodità dei test.
+if(!empty($operatore_flagamministratore)) {
+  $disabled_scheda='';
+}
+// END GF
+
+// test code
+// $disabled_scheda="";
 
 if(!$operatore_flagamministratore)
 {
@@ -443,15 +461,17 @@ function getDataInArray($data)
                                 foreach ($aENTISELEZIONATI as $key => $idente) 
                                 {
 
-                                  //if($disabled_scheda)
+                                  if($disabled_scheda) {
                                     $inputRISORSE='<input type="text" id="risorse'.$idente.'" name="risorse'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSEASSEGNATE[$idente],2,",",".").'" readonly >';
                                     $inputLIQUIDATO='<input type="text" id="liquidato'.$idente.'" name="liquidato'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSE_LIQUIDATE[$idente],2,",",".").'" readonly >';
                                     $inputRESTITUITO='<input type="text" id="restituito'.$idente.'" name="restituito'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSE_RESTITUITE[$idente],2,",",".").'" readonly >';
                                     $inputECONOMIA='<input type="text" id="economia'.$idente.'" name="economia'.$idente.'" class="form-control" placeholder="0.00" value="'.number_format($aRISORSE_ECONOMIA[$idente],2,",",".").'" readonly >';
-                                  //else
-                                  //  $inputRISORSE='<input type="text" id="risorse'.$idente.'" name="risorse'.$idente.'" class="form-control" placeholder="0.00" value="'.$aRISORSEASSEGNATE[$idente].'" '.$disabled_scheda.' >';
-
-
+                                  } else {
+                                    $inputRISORSE='<input type="text" id="risorse'.$idente.'" name="risorse'.$idente.'" class="form-control form-control-sm" placeholder="0.00" value="'. number_format($aRISORSEASSEGNATE[$idente],2,'.','').'" '.$disabled_scheda.' >';
+                                    $inputLIQUIDATO='<input type="text" id="liquidato'.$idente.'" name="liquidato'.$idente.'" class="form-control form-control-sm" placeholder="0.00" value="'. number_format($aRISORSE_LIQUIDATE[$idente],2,'.','').'" '.$disabled_scheda.' >';
+                                    $inputRESTITUITO='<input type="text" id="restituito'.$idente.'" name="restituito'.$idente.'" class="form-control form-control-sm" placeholder="0.00" value="'.number_format($aRISORSE_RESTITUITE[$idente],2,'.','').'" '.$disabled_scheda.' >';
+                                    $inputECONOMIA='<input type="text" id="economia'.$idente.'" name="economia'.$idente.'" class="form-control form-control-sm" placeholder="0.00" value="'.number_format($aRISORSE_ECONOMIA[$idente],2,'.','').'" '.$disabled_scheda.' >';
+                                  }
                                   echo '<tr>';
                                   echo '<td>'.$iCounter.'</td>';
                                   echo '<td>'.$aENTI[$idente].'</td>';
@@ -471,7 +491,7 @@ function getDataInArray($data)
                       </div>
 
                         <div class="col-12">
-                          <!--button type="submit" class="btn w-100 btn-primary-soft mt-3 lift" id="_salva" name="_salva" value="true"  <?php echo $disabled_scheda;?> >Salva</button-->
+                          <button type="submit" class="btn w-100 btn-primary-soft mt-3 lift" id="_salva" name="_salva" value="true"  <?php echo $disabled_scheda;?> >Salva</button>
                         </div>
 
                         <input type="hidden" name="_RENDICONTAZIONE" id="_RENDICONTAZIONE" value="<?php echo $pidrebuilding_flussofinanziario; ?>" >
