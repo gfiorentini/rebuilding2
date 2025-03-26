@@ -80,7 +80,7 @@ $rm_operatore_codicefiscale=$rm_profilo_utente[0]["operatore_codicefiscale"];
         <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
               <!-- Icon -->
               <div class="icon icon-lg mb-3">
-                <img src="../librerie/assets/img/analytics.png">  
+                <img src="../librerie/assets/img/riunione.64x64.png">  
               </div>
 
               <!-- Heading -->

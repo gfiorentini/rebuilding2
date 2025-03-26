@@ -90,7 +90,7 @@ $operatore_flagamministratore=$db->getVALUE("select operatore_flagamministratore
           <div class="col-12 col-md-6 col-lg-4 text-center" data-aos="fade-up">
               <!-- Icon -->
               <div class="icon icon-lg mb-3">
-                <img src="../librerie/assets/img/biblioteca.png" style="width: 20%">  
+                <img src="../librerie/assets/img/riunione.64x64.png" style="width: 20%">  
               </div>
 
               <!-- Heading -->
