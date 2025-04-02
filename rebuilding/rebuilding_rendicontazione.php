@@ -24,7 +24,7 @@ $aANNI=array(2017=>"2017",2018=>"2018",2019=>"2019",2020=>"2020",2021=>"2021",20
 
 $aTIPOFONDO=array(1=>"Regionale",2=>"Statale",3=>"FSE",4=>"Misto","Sanitario");
 $aTIPODOCUMENTO=array(1=>"RIPARTO",2=>"CRONOPROGRAMMA",3=>"MODULISTICA",4=>"ALTRO");
-$aTIPOAREA=array(1=>"Famiglia e Minori",2=>"Anziani",3=>"Immigrati e nomadi",4=>"Dipendenze",5=>"Disabili",6=>"Povertà, disagio adulti e senza fissa dimora",8=>"Violenza di genere",7=>"Multiutenza");
+$aTIPOAREA=array(1=>"Famiglia e Minori",2=>"Anziani",3=>"Immigrati e nomadi",4=>"Dipendenze",5=>"Disabili",6=>"Povertà, disagio adulti e senza fissa dimora",10=>"Disagio adulti",9=>"Salute mentale",8=>"Violenza di genere",7=>"Multiutenza");
 
 $operatore_flagamministratore=$db->getVALUE("select operatore_flagamministratore from dara_operatore where iddara_operatore='$idoperatore' ","operatore_flagamministratore");
 if(empty($operatore_ente) && !$operatore_flagamministratore)
@@ -84,6 +84,10 @@ $aSTATI=array(1=>"NO",2=>"SI");
   	 <?php echo getREBUILDINGHEAD(true); ?>
 
      <link rel="stylesheet" href="../librerie/css/bootstrap-select.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+
+<style>
+</style>
 
   </head>
   <body class="bg-light">
@@ -297,9 +301,9 @@ $aSTATI=array(1=>"NO",2=>"SI");
         <div class="row">
           <div class="col-12">
 
-            <div class="table-responsive mb-7 mb-md-9">
+            <div class=" mb-7 mb-md-9">
 
-              <table class="table table-striped" id="tblREPORT" name="tblREPORT">
+              <table class="table " id="tblREPORT" name="tblREPORT">
                 <thead class="fs-6">
                   <tr>
                     <th scope="col" style="width: 5%">#</th>
@@ -489,8 +493,19 @@ $aSTATI=array(1=>"NO",2=>"SI");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="../librerie/js/bootstrap-select.js"></script>
 
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
 
+
+<script>
+  $(document).ready( function () {
+    $("#tblREPORT").DataTable( {
+      order: [[0, 'desc']]
+    });
+
+  });
+
+</script>
 
   </body>
 </html>

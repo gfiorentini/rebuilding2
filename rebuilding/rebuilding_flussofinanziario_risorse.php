@@ -196,6 +196,13 @@ if(getPARAMETRO("_import_file"))
       
                 list($ats_codice,$ats_descrizione)=explode("-",$ats_completo);
                 $ats_codice=trim($ats_codice);
+
+                // fix problem with 1-lenght ats number
+                list($atsString, $atsNumber)=explode(" ", $ats_codice);
+                $atsNumberPadded = str_pad($atsNumber, 2, "0", STR_PAD_LEFT);
+
+                $ats_codice = $atsString . " " . $atsNumberPadded ;
+
                 $idente=array_search($ats_codice,$aENTI_import);
                 
                 if(!empty($idente) && in_array($idente,$aENTISELEZIONATI))

@@ -222,7 +222,7 @@ class rebuildingFLUSSOFINANZIARIO {
 	{
 		global $db;
 		$sSQL="select * from rebuilding_flussofinanziario where idrebuilding_flussofinanziario='".$this->idrebuilding_flussofinanziario."'";
-	    $sOrder=" order by idrebuilding_flussofinanziario ";
+	    $sOrder=" order by idrebuilding_flussofinanziario desc";
 
 	    $sSQL=$sSQL.$sWhere.$sOrder;
 	    $aFLUSSO=$db->select($sSQL);
@@ -234,7 +234,7 @@ class rebuildingFLUSSOFINANZIARIO {
 		global $db;
 
 		$sSQL="select * from rebuilding_flussofinanziario ";		
-	    $sOrder=" order by idrebuilding_flussofinanziario ";
+	    $sOrder=" order by idrebuilding_flussofinanziario desc ";
 
 	    $sSQL=$sSQL.$sWhere.$sOrder;
 	    $aFLUSSI=$db->select($sSQL);
@@ -246,7 +246,7 @@ class rebuildingFLUSSOFINANZIARIO {
 		global $db;
 
 		$sSQL="select * from rebuilding_flussofinanziario inner join rebuilding_flussofinanziario_ente on rebuilding_flussofinanziario.idrebuilding_flussofinanziario=rebuilding_flussofinanziario_ente.idrebuilding_flussofinanziario ";		
-	    $sOrder=" order by rebuilding_flussofinanziario.idrebuilding_flussofinanziario ";
+	    $sOrder=" order by rebuilding_flussofinanziario.idrebuilding_flussofinanziario desc  ";
 
 	    $sSQL=$sSQL.$sWhere.$sOrder;
 	    $aFLUSSI=$db->select($sSQL);
