@@ -57,9 +57,9 @@ $astruttureselezionati=array();
 // $astruttureselezionati=array();
 // $astruttura_selezionati=array();
 $map_email_strutture_regioni = [
-  "POSO" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it",
-  "ISR" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it",
-  "CDI" => "giacomo.fiorentini@regione.marche.it;sofia.romiti@regione.marche.it"
+  "POSO" => "direzione.politichesociali@regione.marche.it",
+  "ISR" => "settore.inclusionesociale@regione.marche.it",
+  "CDI" => "settore.contrastodisagio@regione.marche.it"
 ];
 
 $map_strutture_regioni = [
@@ -282,8 +282,9 @@ elseif(getPARAMETRO("_invia"))
       $aEMAIL[4]="";
 
       // GF DEV-ENVIRONMENT --  TEST CODE START 
-      $fldmail_result=false;
-      // $fldmail_result=sendMAIL($aEMAIL);
+      // $fldmail_result=false;
+      // PROD-ENVIRONMENT
+      $fldmail_result=sendMAIL($aEMAIL);
       // TEST CODE END
 
       if($fldmail_result===true)
