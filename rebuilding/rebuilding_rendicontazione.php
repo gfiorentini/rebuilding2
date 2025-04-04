@@ -500,7 +500,10 @@ $aSTATI=array(1=>"NO",2=>"SI");
 <script>
   $(document).ready( function () {
     $("#tblREPORT").DataTable( {
-      order: [[0, 'desc']]
+      order: [[0, 'desc']],
+      language: {
+        url: '//cdn.datatables.net/plug-ins/1.10.19/i18n/Italian.json'
+      }
     });
 
   });

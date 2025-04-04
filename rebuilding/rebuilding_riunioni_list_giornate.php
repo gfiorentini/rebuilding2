@@ -67,6 +67,12 @@ checkAndCreateDirectory( $riunioniRootGruppo );
 $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incontri where fk_idrebuilding_gld=$gidr ") ;
 
 
+// $formatter = new IntlDateFormatter(
+//   'it_IT', // Locale italiano
+//   IntlDateFormatter::FULL, // Formato completo per la data
+//   IntlDateFormatter::SHORT // Formato breve per l'ora
+// );
+
 // $rm_gruppi_di_lavoro =  $db->select("select * from rebuilding_gruppi_di_lavoro gl
 // where 
 // gl.gdl_tipo='$gdlclass' AND
@@ -175,7 +181,10 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
                     <div class="justify-content-md-end d-md-flex">
                         <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class="btn btn-primary-soft btn-xs " ><i class="fe fe-edit" ></i> Modifica</a>
                     </div>
-                  <?php endif; ?>    
+                  <?php endif; ?> 
+                  <div class="text-end font-italic">
+                      <small class="fs-6 text-end fst-italic " >Creato il <?php echo( (new DateTime($incontro["incontro_dt_created"]))->format('d/m/Y H:i') ) ?></small> 
+                  </div>  
                 </div>
 
                 <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
