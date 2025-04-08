@@ -169,14 +169,14 @@ $disabled_scheda="";
 
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
-                        <input type="text" readonly aria-readonly="true" id="form_incontro_titolo" name="form_incontro_titolo" class="form-control form-control-flush" required placeholder="Inserire titolo riunione" value="<?php echo $incontroDAO->incontro_titolo;?>" <?php echo $disabled_scheda;?> >
+                        <input type="text" readonly aria-readonly="true" id="form_incontro_titolo" name="form_incontro_titolo" class="form-control form-control-flush" required placeholder="Inserire titolo riunione" value="<?php echo htmlspecialchars( $incontroDAO->incontro_titolo );?>" <?php echo $disabled_scheda;?> >
                         <label for="form_incontro_titolo">Titolo</label>
                       </div> 
                     </div>  
                     <hr/>
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
-                      <textarea id="form_incontro_abstract" rows="5" readonly aria-readonly="true"  name="form_incontro_abstract" class="form-control form-control-flush"  placeholder="Inserire abstract riunione" > <?php echo $incontroDAO->incontro_abstract;?></textarea> 
+                      <textarea id="form_incontro_abstract" rows="5" readonly aria-readonly="true"  name="form_incontro_abstract" class="form-control form-control-flush"  placeholder="Inserire abstract riunione" > <?php echo htmlspecialchars(  $incontroDAO->incontro_abstract );?></textarea> 
                         <label for="form_incontro_abstract">Ordine del giorno</label>
                       </div> 
                     </div>  

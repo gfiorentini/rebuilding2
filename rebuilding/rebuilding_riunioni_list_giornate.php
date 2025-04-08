@@ -173,10 +173,10 @@ $gelenco_incontri = $db->select("select * from rebuilding_gruppi_di_lavoro_incon
     
                 <div class="list-group-item list-group-item-action" >
                   <div class="d-flex w-100 justify-content-between">
-                    <a href="rebuilding_riunione_view?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class=" " ><h4 class="mb-1"><?php echo $incontro["incontro_titolo"]  ; ?></h4></a>
+                    <a href="rebuilding_riunione_view?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class=" " ><h4 class="mb-1"><?php echo stripslashes($incontro["incontro_titolo"])  ; ?></h4></a>
                     <?php echo ( new DateTime( $incontro["incontro_giorno"]))->format("d-m-Y"); ?>
                   </div>
-                  <p class="mb-1"><?php echo $incontro["incontro_abstract"]  ; ?></p>
+                  <p class="mb-1"><?php echo stripslashes($incontro["incontro_abstract"])  ; ?></p>
                   <?php if ($gcurrentgruppo_auth_canEdit == 1): ?>    
                     <div class="justify-content-md-end d-md-flex">
                         <a href="rebuilding_riunione_edit?igl=<?php echo $gidr; ?>&idr=<?php echo $incontro["idincontro"] ?>" class="btn btn-primary-soft btn-xs " ><i class="fe fe-edit" ></i> Modifica</a>

@@ -103,6 +103,7 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     , incontro_op_last_modified=NULL 
     WHERE idincontro=$pidincontro;"; 
     $db->query($sSQL);
+    
 
     $alert_update_success=true;
   }
@@ -325,14 +326,14 @@ $disabled_scheda="";
 
                     <div class="col-12 col-md-10">
                       <div class="form-floating">
-                        <input type="text" id="form_incontro_titolo" name="form_incontro_titolo" class="form-control form-control-flush" required placeholder="Inserire titolo riunione" value="<?php echo $incontroDAO->incontro_titolo;?>" <?php echo $disabled_scheda;?> >
+                        <input type="text" id="form_incontro_titolo" name="form_incontro_titolo" class="form-control form-control-flush" required placeholder="Inserire titolo riunione" value="<?php echo htmlspecialchars( $incontroDAO->incontro_titolo ) ;?>" <?php echo $disabled_scheda;?> >
                         <label for="form_incontro_titolo">Titolo</label>
                       </div> 
                     </div>  
 
                     <div class="col-12 col-md-10">
                       <div class=" form-floating fix-floating-label">
-                      <textarea id="form_incontro_abstract" rows="5"  name="form_incontro_abstract" class="form-control form-control-flush" required placeholder="Inserire abstract riunione" <?php echo $disabled_scheda;?>   ><?php echo $incontroDAO->incontro_abstract;?></textarea> 
+                      <textarea id="form_incontro_abstract" rows="5"  name="form_incontro_abstract" class="form-control form-control-flush" required placeholder="Inserire abstract riunione" <?php echo $disabled_scheda;?>   ><?php echo htmlspecialchars( $incontroDAO->incontro_abstract );?></textarea> 
                       <label for="form_incontro_abstract">Ordine del giorno</label>
                       </div> 
                     </div>  

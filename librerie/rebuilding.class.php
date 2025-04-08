@@ -36,8 +36,8 @@ class rebuildingGruppiDiLavoroIncontri {
 			foreach ($aNEWS as $key => $rows) 
 			{
 				$this->fk_idrebuilding_gld			=$rows["fk_idrebuilding_gld"];
-				$this->incontro_titolo					=$rows["incontro_titolo"];
-				$this->incontro_abstract				=$rows["incontro_abstract"];
+				$this->incontro_titolo					=stripslashes($rows["incontro_titolo"]);
+				$this->incontro_abstract				=stripslashes($rows["incontro_abstract"]);
 				$this->incontro_giorno					=$rows["incontro_giorno"];		
 				$this->incontro_file_agenda			=$rows["incontro_file_agenda"];
 				$this->incontro_file_verbale		=$rows["incontro_file_verbale"];
