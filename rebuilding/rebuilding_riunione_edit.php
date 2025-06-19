@@ -92,15 +92,14 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
   if(!empty($pidincontro))
   {   
     $pincontro_dt_last_modified=date("Y-m-d");
+    $koperatoreEdit = $operatore->$operatore_codicefiscale;
 
     $sSQL="   UPDATE rebuilding_gruppi_di_lavoro_incontri 
     SET incontro_titolo='$pform_incontro_titolo'
     , incontro_abstract='$pincontro_abstract'
     , incontro_giorno='$pincontro_giorno'
-    , incontro_dt_created=current_timestamp()
-    , incontro_op_created=NULL
     , incontro_dt_last_modified=current_timestamp()
-    , incontro_op_last_modified=NULL 
+    , incontro_op_last_modified='$koperatoreEdit' 
     WHERE idincontro=$pidincontro;"; 
     $db->query($sSQL);
     
@@ -120,6 +119,8 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     $pincontro_giorno=getPARAMETRO("form_incontro_giorno");
     $pincontro_giorno=$db->escape_text($pincontro_giorno);
 
+    $op_kom = $operatore->$operatore_codicefiscale;
+
     $sSQL="INSERT INTO rebuilding_gruppi_di_lavoro_incontri 
     (fk_idrebuilding_gld
     , incontro_titolo
@@ -138,7 +139,7 @@ if(getPARAMETRO("_salva") && $operatore_flagamministratore==1 && empty($operator
     ) VALUES ($pfk_idrebuilding_gld
     , '$pform_incontro_titolo'
     , '$pincontro_abstract'
-    , '$pincontro_giorno', NULL, NULL, NULL, NULL , NULL, current_timestamp(), NULL, current_timestamp(), NULL, NULL);";
+    , '$pincontro_giorno', NULL, NULL, NULL, NULL , NULL, current_timestamp(), '$op_kom' , current_timestamp(), '$op_kom', NULL);";
     $db->query($sSQL);
     // legge nuovo ID
     $pidincontro=$db->insert_id();
