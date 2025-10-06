@@ -58,10 +58,6 @@ $aSTATI=array(1=>"NON INVIATA",2=>"INVIATA");
 
      <link rel="stylesheet" href="../librerie/css/bootstrap-select.css">
 
-     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-
-
-
   </head>
   <body class="bg-light">
 
@@ -159,9 +155,9 @@ $aSTATI=array(1=>"NON INVIATA",2=>"INVIATA");
         <div class="row">
           <div class="col-12">
 
-            <div class="table-responsive mb-7 mb-md-9"  >
+            <div class="table-responsive mb-7 mb-md-9">
 
-              <table class="table table-striped" id="tblREPORT" name="tblREPORT">
+              <table class="table table-striped">
                 <thead class="fs-6">
                   <tr>
                     <th scope="col">#</th>
@@ -293,23 +289,6 @@ $aSTATI=array(1=>"NON INVIATA",2=>"INVIATA");
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="../librerie/js/bootstrap-select.js"></script>
-
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-
-
-    <script>
-  $(document).ready( function () {
-    $("#tblREPORT").DataTable( {
-      order: [[0, 'desc']],
-      language: {
-        url: '//cdn.datatables.net/plug-ins/1.10.19/i18n/Italian.json'
-      }
-    });
-
-  });
-
-</script>
-
 
   </body>
 </html>
