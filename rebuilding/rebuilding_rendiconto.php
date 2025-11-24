@@ -20,7 +20,8 @@ $aENTI=array(1=>"ATS1 - Pesaro",3=>"ATS3 - C.M. Catria e Nerone",4=>"ATS4 - Urbi
 
 $aANNI=array(2017=>"2017",2018=>"2018",2019=>"2019",2020=>"2020",2021=>"2021",2022=>"2022",2023=>"2023",2024=>"2024",2025=>"2025",2026=>"2026", 2027=>"2027");
 
-$aTIPOFONDO=array(1=>"Regionale",2=>"Statale",3=>"FSE",4=>"Misto","Sanitario");
+// $aTIPOFONDO=array(1=>"Regionale",2=>"Statale",3=>"FSE",4=>"Misto","Sanitario");
+$aTIPOFONDO=array(1=>"Regionale",2=>"Statale",3=>"FSE",4=>"Misto","Sanitario",9=>"Europeo");
 $aTIPODOCUMENTO=array(1=>"RIPARTO",2=>"CRONOPROGRAMMA",3=>"MODULISTICA",4=>"ALTRO");
 $aTIPOAREA=array(1=>"Famiglia e Minori",2=>"Anziani",3=>"Immigrati e nomadi",4=>"Dipendenze",5=>"Disabili",6=>"Povertà, disagio adulti e senza fissa dimora",10=>"Disagio adulti",9=>"Salute mentale",8=>"Violenza di genere",7=>"Multiutenza");
 
